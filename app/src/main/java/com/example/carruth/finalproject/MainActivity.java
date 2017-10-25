@@ -11,9 +11,4 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    // Tate Made this comment and this lame function
-    protected void nonsense() {
-        System.out.println("YEEHAWH");
-    }
-
 }
