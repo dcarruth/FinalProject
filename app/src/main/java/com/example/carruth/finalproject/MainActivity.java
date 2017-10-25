@@ -13,7 +13,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Tate Made this comment and this lame function
     protected void nonsense() {
-        System.out.println("YEEHAWH");
+        System.out.println("OOOOOHHHH YEEHAWH");
     }
+
 
 }
