@@ -10,4 +10,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+    // Tate Made this comment and this lame function
+    protected void nonsense() {
+        System.out.println("YEEHAWH");
+    }
+
 }
