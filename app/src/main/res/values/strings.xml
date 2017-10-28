@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Dr. Vinyl Scheduler</string>
     <string name="login_button">Login</string>
-    <string name="create_account_button">Create New Account</string>
+    <string name="create_account_button">New Account</string>
     <string name="logo_of_company">Logo of Company</string>
+    <string name="forgot_password">Forgot Password?</string>
 </resources>

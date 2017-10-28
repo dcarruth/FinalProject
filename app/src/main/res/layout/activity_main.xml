@@ -4,49 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.carruth.finalproject.MainActivity">
+    tools:context="com.example.carruth.finalproject.MainActivity"
+    android:background="@color/colorPrimary">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="254dp"
-        android:layout_height="158dp"
-        android:layout_marginTop="32dp"
+        android:id="@+id/logo"
+        android:layout_width="296dp"
+        android:layout_height="196dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/logo_of_company"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/dr_vinyl_icon"
-        app:layout_constraintHorizontal_bias="0.505" />
+        app:srcCompat="@mipmap/dr_vinyl_icon" />
 
     <Button
         android:id="@+id/login"
         android:layout_width="192dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:background="@color/colorPrimary"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_layout"
         android:onClick="onLogin"
         android:text="@string/login_button"
         android:textAlignment="center"
-        android:textColor="@android:color/background_light"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/create_account"
         android:layout_width="@android:dimen/thumbnail_height"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/button_layout"
         android:onClick="onCreateNewAccount"
         android:text="@string/create_account_button"
         android:textAlignment="center"
-        android:textColor="@android:color/background_light"
+        android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login" />
+
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:clickable="true"
+        android:onClick="onForgotPassword"
+        android:text="@string/forgot_password"
+        android:textColor="?attr/colorAccent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_account" />
 </android.support.constraint.ConstraintLayout>

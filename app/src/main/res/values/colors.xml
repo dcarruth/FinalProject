@@ -3,4 +3,5 @@
     <color name="colorPrimary">#10105d</color>
     <color name="colorPrimaryDark">#10105d</color>
     <color name="colorAccent">#FFF</color>
+    <color name="dr_vinyl_yellow">#FFC000</color>
 </resources>
