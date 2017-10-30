@@ -14,7 +14,9 @@
         android:scrollbars="vertical"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintTop_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp">
 
 
         <android.support.constraint.ConstraintLayout
@@ -32,7 +34,7 @@
                 android:contentDescription="@string/logo_of_company"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/dr_vinyl_icon" />
+                app:srcCompat="@mipmap/dr_vinyl" />
 
             <EditText
                 android:id="@+id/first_name"
@@ -42,16 +44,18 @@
                 android:layout_marginTop="14dp"
                 android:background="@drawable/edit_text_layout"
                 android:ems="10"
-                android:hint="@string/first_name"
                 android:inputType="textPersonName"
+                android:hint="@string/first_name"
                 android:textAlignment="center"
                 android:textColor="?attr/colorPrimary"
                 android:textStyle="bold"
+                android:textCursorDrawable="@null"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/logo" />
 
             <EditText
                 android:id="@+id/last_name"
+                android:textCursorDrawable="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -70,7 +74,8 @@
 
             <EditText
                 android:id="@+id/address"
-                android:layout_width="352dp"
+                android:textCursorDrawable="@null"
+                android:layout_width="332dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
@@ -88,6 +93,7 @@
 
             <EditText
                 android:id="@+id/city"
+                android:textCursorDrawable="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -106,12 +112,12 @@
 
             <Spinner
                 android:id="@+id/spinner"
-                android:layout_width="120dp"
+                android:layout_width="100dp"
                 android:layout_height="39dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/spinner_layout"
-                android:entries="@string-array/state_list"
+                android:entries="@array/state_list"
                 android:textAlignment="center"
                 app:layout_constraintLeft_toRightOf="@+id/city"
                 app:layout_constraintTop_toBottomOf="@+id/address"
@@ -121,6 +127,7 @@
 
             <EditText
                 android:id="@+id/zip"
+                android:textCursorDrawable="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -139,6 +146,7 @@
 
             <EditText
                 android:id="@+id/phone"
+                android:textCursorDrawable="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -157,6 +165,7 @@
 
             <EditText
                 android:id="@+id/email"
+                android:textCursorDrawable="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -174,6 +183,7 @@
             </EditText>
 
             <EditText
+                android:textCursorDrawable="@null"
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -193,6 +203,7 @@
 
             <EditText
                 android:id="@+id/password"
+                android:textCursorDrawable="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -211,6 +222,7 @@
 
             <EditText
                 android:id="@+id/password_confirm"
+                android:textCursorDrawable="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
