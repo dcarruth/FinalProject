@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/dr_vinyl_icon"
+        android:icon="@mipmap/dr_vinyl"
         android:label=""
         android:roundIcon="@mipmap/dr_vinyl_icon"
         android:supportsRtl="true"
