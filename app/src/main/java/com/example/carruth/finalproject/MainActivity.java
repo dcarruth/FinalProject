@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onForgotPassword(View view){
-
+        Intent intent = new Intent(getApplicationContext(),CreateNewPasswordActivity.class);
+        startActivity(intent);
     }
 
 }

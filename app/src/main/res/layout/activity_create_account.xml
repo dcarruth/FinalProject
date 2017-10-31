@@ -12,11 +12,9 @@
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintTop_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintTop_creator="1">
 
 
         <android.support.constraint.ConstraintLayout
@@ -44,18 +42,17 @@
                 android:layout_marginTop="14dp"
                 android:background="@drawable/edit_text_layout"
                 android:ems="10"
-                android:inputType="textPersonName"
                 android:hint="@string/first_name"
+                android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textColor="?attr/colorPrimary"
-                android:textStyle="bold"
                 android:textCursorDrawable="@null"
+                android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/logo" />
 
             <EditText
                 android:id="@+id/last_name"
-                android:textCursorDrawable="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -66,6 +63,7 @@
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textColor="?attr/colorPrimary"
+                android:textCursorDrawable="@null"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/first_name">
@@ -74,7 +72,6 @@
 
             <EditText
                 android:id="@+id/address"
-                android:textCursorDrawable="@null"
                 android:layout_width="332dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -85,6 +82,7 @@
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textColor="?attr/colorPrimary"
+                android:textCursorDrawable="@null"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/last_name">
@@ -93,7 +91,6 @@
 
             <EditText
                 android:id="@+id/city"
-                android:textCursorDrawable="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -104,6 +101,7 @@
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textColor="?attr/colorPrimary"
+                android:textCursorDrawable="@null"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/address">
@@ -120,14 +118,12 @@
                 android:entries="@array/state_list"
                 android:textAlignment="center"
                 app:layout_constraintLeft_toRightOf="@+id/city"
-                app:layout_constraintTop_toBottomOf="@+id/address"
-                tools:layout_editor_absoluteY="268dp">
+                app:layout_constraintTop_toBottomOf="@+id/address">
 
             </Spinner>
 
             <EditText
                 android:id="@+id/zip"
-                android:textCursorDrawable="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -138,6 +134,7 @@
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textColor="?attr/colorPrimary"
+                android:textCursorDrawable="@null"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/city">
@@ -146,7 +143,6 @@
 
             <EditText
                 android:id="@+id/phone"
-                android:textCursorDrawable="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -157,6 +153,7 @@
                 android:inputType="phone"
                 android:textAlignment="center"
                 android:textColor="?attr/colorPrimary"
+                android:textCursorDrawable="@null"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/zip">
@@ -165,7 +162,6 @@
 
             <EditText
                 android:id="@+id/email"
-                android:textCursorDrawable="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -176,6 +172,7 @@
                 android:inputType="textEmailAddress"
                 android:textAlignment="center"
                 android:textColor="?attr/colorPrimary"
+                android:textCursorDrawable="@null"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/phone">
@@ -183,27 +180,7 @@
             </EditText>
 
             <EditText
-                android:textCursorDrawable="@null"
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/edit_text_layout"
-                android:ems="10"
-                android:hint="@string/username"
-                android:inputType="phone"
-                android:textAlignment="center"
-                android:textColor="?attr/colorPrimary"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/email">
-
-            </EditText>
-
-            <EditText
                 android:id="@+id/password"
-                android:textCursorDrawable="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -214,15 +191,15 @@
                 android:inputType="textPassword"
                 android:textAlignment="center"
                 android:textColor="?attr/colorPrimary"
+                android:textCursorDrawable="@null"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/username">
+                app:layout_constraintTop_toBottomOf="@+id/email">
 
             </EditText>
 
             <EditText
                 android:id="@+id/password_confirm"
-                android:textCursorDrawable="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -233,6 +210,7 @@
                 android:inputType="textPassword"
                 android:textAlignment="center"
                 android:textColor="?attr/colorPrimary"
+                android:textCursorDrawable="@null"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/password">
