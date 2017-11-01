@@ -24,4 +24,8 @@ public class CreateNewPasswordActivity extends AppCompatActivity {
         t.show();
         startActivity(intent);
     }
+
+    public Boolean validEmail(String email){
+        return false;
+    }
 }
