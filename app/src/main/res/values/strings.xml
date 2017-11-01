@@ -17,6 +17,8 @@
     <string name="password_confirm">Re-enter Password</string>
     <string name="submit">Submit</string>
     <string name="clear_logo">Clear Logo</string>
+    <string name="forget_password">Forgot Password</string>
+    <string name="login">Login</string>
     <string-array name="state_list">
         <item>State</item>
         <item>AK</item>

@@ -22,7 +22,11 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".CreateNewPasswordActivity"
-            android:theme="@style/AppTheme"/>
+            android:label="@string/forget_password"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".LoginActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/login" />
     </application>
 
 </manifest>
