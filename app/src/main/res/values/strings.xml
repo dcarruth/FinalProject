@@ -19,6 +19,22 @@
     <string name="clear_logo">Clear Logo</string>
     <string name="forget_password">Forgot Password</string>
     <string name="login">Login</string>
+    <string name="service">Services</string>
+    <string name="leather">Leather and Plastic</string>
+    <string name="fabric">Fabric Repair</string>
+    <string name="hard_plastic">Hard Plastic Repair</string>
+    <string name="leather_repair">Leather Repair</string>
+    <string name="paint">Paint (Exterior)</string>
+    <string name="interior">Interior Repair</string>
+    <string name="odor">Interior Odor Removal</string>
+    <string name="_29_99">$29.99</string>
+    <string name="_49_99">$49.99</string>
+    <string name="_6999">$69.99</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="_69_99">69.99</string>
+    <string name="_79_99">$79.99</string>
+    <string name="_99_99">$99.99</string>
+    <string name="cont">Continue</string>
     <string-array name="state_list">
         <item>State</item>
         <item>AK</item>

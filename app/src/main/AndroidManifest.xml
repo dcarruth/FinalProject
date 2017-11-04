@@ -24,9 +24,15 @@
             android:name=".CreateNewPasswordActivity"
             android:label="@string/forget_password"
             android:theme="@style/AppTheme" />
-        <activity android:name=".LoginActivity"
-            android:theme="@style/AppTheme"
-            android:label="@string/login" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/login"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ServiceActivity"
+            android:label="Services" />
+        <activity android:name=".CalanderActivity"
+            android:label="Choose a Date" />
     </application>
 
 </manifest>
