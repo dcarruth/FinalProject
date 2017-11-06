@@ -7,22 +7,6 @@
     android:background="@color/colorPrimary"
     tools:context="com.example.carruth.finalproject.CreateAccountActivity">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/create_account_scrollView"
-        android:layout_width="368dp"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintTop_creator="1">
-
-
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:weightSum="1">
-
             <ImageView
                 android:id="@+id/logo"
                 android:layout_width="140dp"
@@ -232,11 +216,5 @@
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/password_confirm" />
-
-        </android.support.constraint.ConstraintLayout>
-    </ScrollView>
-
-
-
 
 </android.support.constraint.ConstraintLayout>
