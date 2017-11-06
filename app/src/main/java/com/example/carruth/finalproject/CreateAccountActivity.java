@@ -9,8 +9,7 @@ import java.util.Map;
 public class CreateAccountActivity extends AppCompatActivity {
 
     //Private User user;
-EditText p1 = (EditText)findViewById(R.id.password);
-EditText p2 = (EditText)findViewById(R.id.password_confirm);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,11 +20,11 @@ EditText p2 = (EditText)findViewById(R.id.password_confirm);
         return "";
     }
 
-    public Boolean checkPass(String p, String pp){
-        return false;
-    }
-    // NOT FINISHED YET
-    public Boolean comparePass(EditText p1, EditText p2){
+    public Boolean comparePass(){
+
+        EditText p1 = (EditText)findViewById(R.id.password);
+        EditText p2 = (EditText)findViewById(R.id.password_confirm);
+
         if(p1.getText().toString().equals( p2.getText().toString())){
          return true;
         }
