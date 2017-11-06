@@ -85,7 +85,8 @@
                 android:textCursorDrawable="@null"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/last_name">
+                app:layout_constraintTop_toBottomOf="@+id/last_name"
+                android:layout_marginLeft="16dp">
 
             </EditText>
 
@@ -219,11 +220,13 @@
 
             <Button
                 android:id="@+id/submit_new_account"
-                android:layout_width="352dp"
+                android:layout_width="332dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/button_layout"
+                android:onClick="validateData"
                 android:text="@string/submit"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"

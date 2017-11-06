@@ -1,7 +1,9 @@
 package com.example.carruth.finalproject;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 import java.util.Map;
@@ -39,8 +41,10 @@ public class CreateAccountActivity extends AppCompatActivity {
                                     String zip, String email, String password, String password2){
         return false;
     }
-    public Boolean validateData(){
-        return false;
+    public void validateData(View view){
+        Intent intent = new Intent(getApplicationContext(),ServiceActivity.class);
+        startActivity(intent);
+
     }
 
 }
