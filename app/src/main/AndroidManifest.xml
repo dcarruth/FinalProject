@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/dr_vinyl"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,20 +21,29 @@
         <activity
             android:name=".CreateAccountActivity"
             android:label="@string/create_account_button"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".CreateNewPasswordActivity"
             android:label="@string/forget_password"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/login"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ServiceActivity"
+            android:screenOrientation="portrait"
             android:label="Services" />
-        <activity android:name=".CalanderActivity"
+        <activity
+            android:name=".CalanderActivity"
+            android:screenOrientation="portrait"
             android:label="Choose a Date" />
+        <activity android:name=".ChooseTimeActivity"
+            android:screenOrientation="portrait"
+            android:label="Choose a Time"/>
     </application>
 
 </manifest>

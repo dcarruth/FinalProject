@@ -1,7 +1,10 @@
 package com.example.carruth.finalproject;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class CalanderActivity extends AppCompatActivity {
 
@@ -10,4 +13,10 @@ public class CalanderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calander);
     }
+
+    public void onChooseDate(View view){
+        Intent intent = new Intent(getApplicationContext(),ChooseTimeActivity.class);
+        startActivity(intent);
+    }
+
 }

@@ -35,6 +35,9 @@
     <string name="_79_99">$79.99</string>
     <string name="_99_99">$99.99</string>
     <string name="cont">Continue</string>
+    <string name="time1">1:00 PM</string>
+    <string name="time3">3:00 PM</string>
+    <string name="time2">5:30 PM</string>
     <string-array name="state_list">
         <item>State</item>
         <item>AK</item>
