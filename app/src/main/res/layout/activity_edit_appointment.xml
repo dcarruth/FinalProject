@@ -76,7 +76,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:buttonTint="@color/dr_vinyl_yellow"
+            android:buttonTint="@color/dr_vinyl_yellow"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -92,7 +92,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:buttonTint="@color/dr_vinyl_yellow"
+            android:buttonTint="@color/dr_vinyl_yellow"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date" />
 
@@ -108,7 +108,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:buttonTint="@color/dr_vinyl_yellow"
+            android:buttonTint="@color/dr_vinyl_yellow"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/time" />
     </RadioGroup>

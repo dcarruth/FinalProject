@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="com.example.carruth.finalproject.CreateAccountActivity">
+    tools:context="com.example.carruth.finalproject.EditAccountActivity">
 
     <ScrollView
         android:layout_width="368dp"
@@ -72,25 +72,26 @@
 
     </EditText>
 
-    <EditText
-        android:id="@+id/edit_address"
-        android:layout_width="332dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/edit_text_layout"
-        android:ems="10"
-        android:hint="@string/address"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textColor="?attr/colorPrimary"
-        android:textCursorDrawable="@null"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_last_name"
-        android:layout_marginLeft="16dp">
+            <EditText
+                android:id="@+id/edit_address"
+                android:layout_width="332dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_layout"
+                android:ems="10"
+                android:hint="@string/address"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="?attr/colorPrimary"
+                android:textCursorDrawable="@null"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_last_name">
 
-    </EditText>
+            </EditText>
 
     <EditText
         android:id="@+id/edit_city"
