@@ -54,7 +54,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         String email = text.getText().toString();
 
         edit.putString("email",email);
-        edit.commit();
+        edit.apply();
 
         Intent intent = new Intent(getApplicationContext(),ServiceActivity.class);
         startActivity(intent);
