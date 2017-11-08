@@ -35,15 +35,27 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ServiceActivity"
-            android:screenOrientation="portrait"
-            android:label="Services" />
+            android:label="Services"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CalanderActivity"
-            android:screenOrientation="portrait"
-            android:label="Choose a Date" />
-        <activity android:name=".ChooseTimeActivity"
-            android:screenOrientation="portrait"
-            android:label="Choose a Time"/>
+            android:label="Choose a Date"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChooseTimeActivity"
+            android:label="Choose a Time"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ConfirmActivity"
+            android:label="Confirm Appointment"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditAccountActivity"
+            android:label="Edit Account"
+            android:screenOrientation="portrait" />
+        <activity android:name=".EditAppointmentActivity"
+            android:label="Edit Appointment"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
