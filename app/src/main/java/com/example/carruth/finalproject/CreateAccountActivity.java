@@ -1,6 +1,9 @@
 package com.example.carruth.finalproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -34,7 +37,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             return false;
         }
     }
-//
+
 
 
     public Boolean everythingFilled(String fName, String lName, String address, String city,
@@ -42,6 +45,17 @@ public class CreateAccountActivity extends AppCompatActivity {
         return false;
     }
     public void validateData(View view){
+
+        Context c = getApplicationContext();
+        SharedPreferences s = PreferenceManager.getDefaultSharedPreferences(c);
+        SharedPreferences.Editor edit = s.edit();
+
+        EditText text = (EditText)findViewById(R.id.email_create_account);
+        String email = text.getText().toString();
+
+        edit.putString("email",email);
+        edit.commit();
+
         Intent intent = new Intent(getApplicationContext(),ServiceActivity.class);
         startActivity(intent);
 
