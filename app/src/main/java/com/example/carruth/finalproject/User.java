@@ -8,19 +8,15 @@ public class User {
     private Map<String,String> information;
     private int appointmentsSet;
 
-    User(){
-        information.clear();
+    User(Map<String,String> m){
+        information = m;
         appointmentsSet = 0;
     }
 
     User(String email, String password){
-
+        //Get JSON from data base and fill map with data
     }
 
-    public void setInformation(Map<String,String> info){
-        if (!info.isEmpty())
-           information = info;
-    }
 
     public void setAppointmentsSet(int i){
         if (i != 0)
