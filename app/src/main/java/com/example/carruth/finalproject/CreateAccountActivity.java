@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -19,11 +21,20 @@ import java.util.Map;
 public class CreateAccountActivity extends AppCompatActivity {
 
     //Private User user;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
+
+        //mDatabase = findViewById(R.id.);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Name");
+
+        myRef.setValue("Daniel");
+
+
     }
 
     public String hashPassword(String Password){
