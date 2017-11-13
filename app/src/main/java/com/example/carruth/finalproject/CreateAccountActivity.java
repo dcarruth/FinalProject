@@ -20,26 +20,15 @@ import java.util.Map;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
-    //Private User user;
-    private DatabaseReference mDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-        //mDatabase = findViewById(R.id.);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Name");
-
-        myRef.setValue("Daniel");
-
-
     }
 
-    public String hashPassword(String Password){
-        return "";
-    }
 
     public Boolean comparePass(String pass, String pass2){
         return pass.equals(pass2);
@@ -54,23 +43,21 @@ public class CreateAccountActivity extends AppCompatActivity {
                 || email.isEmpty() || password.isEmpty() || password2.isEmpty());
     }
 
+
     /************************************************************
      * Gathers info from the create account screen and save data in
      * a map. Then creates a User object for the rest of the app.
      *************************************************************/
-    public void validateData(View view){
+    public void validateData(View view) throws Exception {
 
         Map<String,String> userInfo = new HashMap<>();
-
-        Context c = getApplicationContext();
-        SharedPreferences s = PreferenceManager.getDefaultSharedPreferences(c);
-        SharedPreferences.Editor edit = s.edit();
+        User user = new User(userInfo);
+        SharedPreferences.Editor edit = getSharedPreferences("email.txt",MODE_PRIVATE).edit();
 
         //Get email to save to Shared Preferences
         EditText text = (EditText)findViewById(R.id.email_create_account);
         String email = text.getText().toString();
         userInfo.put("email",email);
-
         edit.putString("email",email);
         edit.apply();
 
@@ -112,14 +99,13 @@ public class CreateAccountActivity extends AppCompatActivity {
         //Get password from UI and add to map
         text = (EditText)findViewById(R.id.password);
         String password = text.getText().toString();
-        userInfo.put("password",hashPassword(password));
+        userInfo.put("password",password);
 
-        //Get confirmed password from UI and add to map
+        //Get confirmed password from UI and check against original
         text = (EditText)findViewById(R.id.password_confirm);
         String passwordConfirm = text.getText().toString();
 
-        User user = new User(userInfo);
-
+        user.setInformation(userInfo);
 
         if (everythingFilled(firstName,lastName,address,city,zip,email,password,passwordConfirm)) {
             if (comparePass(password, passwordConfirm)) {
@@ -129,7 +115,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                 //Save object to json string to add it to the intent. Reconstruct in new activity
                 Gson gson = new Gson();
                 String userI = gson.toJson(user);
-
+                user.saveUserToDataBase(userI);
                 intent.putExtra("user", userI);
                 startActivity(intent);
             } else {
