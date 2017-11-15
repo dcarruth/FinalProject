@@ -119,9 +119,8 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         if (everythingFilled(firstName,lastName,address,city,zip,email,password,passwordConfirm)) {
             if (comparePass(password, passwordConfirm)) {
-                Log.d("","1");
+
                 Intent intent = new Intent(getApplicationContext(), ServiceActivity.class);
-                Log.d("","1");
 
                 // Creates login in firebase that can be accessed anytime
                 mAuth.createUserWithEmailAndPassword(email, password)
@@ -129,7 +128,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 Log.d("", "createUserWithEmail:onComplete:" + task.isSuccessful());
-
+                                Log.i("Create User","Successfully created new authentication.");
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
@@ -141,7 +140,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                             }
                         });
 
-                Log.d("","1");
+
                 //Save object to json string to add it to the intent. Reconstruct in new activity
                 Gson gson = new Gson();
                 String userI = gson.toJson(user);

@@ -5,6 +5,8 @@ package com.example.carruth.finalproject;
 
 
 
+import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -72,6 +74,9 @@ public class User {
             // Add one char at a time to the final string
             finalKey = finalKey + middle[i];
         }
+        if (finalKey.equals("")){
+            Log.d("Failed Parse","Failed to parse Email");
+        }
         return finalKey;
     }
 
@@ -83,7 +88,7 @@ public class User {
         // Parse email into firebase approved string
         DatabaseReference ref = data.getReference(parseEmailToKey(information.get("email")));
         ref.setValue(save);
-
+        Log.i("Saving Data","Successfully saved data to data base");
     }
 
 }
