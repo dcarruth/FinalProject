@@ -122,8 +122,8 @@ public class CreateAccountActivity extends AppCompatActivity {
                 Log.d("","1");
                 Intent intent = new Intent(getApplicationContext(), ServiceActivity.class);
                 Log.d("","1");
-                //////////////////////////////////////////////////////////////////////////////
-                //This is an attempt to use firebase login capabilities
+
+                // Creates login in firebase that can be accessed anytime
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -140,7 +140,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                                 // ...
                             }
                         });
-                /////////////////////////////////////////////////////////////////////////////////
+
                 Log.d("","1");
                 //Save object to json string to add it to the intent. Reconstruct in new activity
                 Gson gson = new Gson();
