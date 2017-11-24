@@ -25,6 +25,7 @@ public class ChooseTimeActivity extends AppCompatActivity {
         textView.setText(dated);
         Log.d(TAG, "1234");
     }
+    //Create menu
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflate = getMenuInflater();
         inflate.inflate(R.menu.menu,menu);
