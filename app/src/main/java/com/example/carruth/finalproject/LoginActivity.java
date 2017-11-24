@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.ActionCodeResult;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,12 +23,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-
+    private Boolean canLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        canLogin = false;
         // Get access to data base
         mAuth = FirebaseAuth.getInstance();
 
@@ -62,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @Override
     protected void onStart(){
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
@@ -71,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Get email and password from UI
         EditText text = (EditText) findViewById(R.id.login_email);
-        String email = text.getText().toString();
+        final String email = text.getText().toString();
         EditText pass = (EditText) findViewById(R.id.login_password);
         String password = pass.getText().toString();
 
@@ -87,11 +89,19 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             Log.d("", "signInWithEmail:onComplete:" + task.isSuccessful());
-
+                            if (task.isSuccessful()){
+                                Bundle bundle = new Bundle();
+                                bundle.putString("user", new User().getUserDataFromDataBase(email));
+                                Log.i("Login","Successful Login");
+                                Intent intent = new Intent(getApplicationContext(), ServiceActivity.class);
+                                intent.putExtras(bundle);
+                                startActivity(intent);
+                            }
                             // If sign in fails, display a message to the user. If sign in succeeds
                             // the auth state listener will be notified and logic to handle the
                             // signed in user can be handled in the listener.
                             if (!task.isSuccessful()) {
+
                                 Log.w("", "signInWithEmail:failed", task.getException());
                                 Toast.makeText(getApplicationContext(), "Login Failed! Please try again!",
                                         Toast.LENGTH_SHORT).show();
@@ -99,13 +109,13 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
 
-            Intent intent = new Intent(getApplicationContext(), ServiceActivity.class);
-
-            startActivity(intent);
         }
     }
+
+    @Override
     protected void onStop(){
         super.onStop();
+        canLogin = false;
         if (mAuthListener != null){
             mAuth.removeAuthStateListener(mAuthListener);
         }

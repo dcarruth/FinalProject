@@ -6,6 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CalendarView;
 
@@ -35,6 +38,29 @@ public class CalanderActivity extends AppCompatActivity {
         });
 
     }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflate = getMenuInflater();
+        inflate.inflate(R.menu.menu,menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.edit_acc:
+                startActivity(new Intent(this, EditAccountActivity.class));
+                return true;
+            case R.id.edit_app:
+                startActivity(new Intent(this, EditAppointmentActivity.class));
+                return true;
+            case R.id.logout:
+                startActivity(new Intent(this, MainActivity.class));
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
     public void onChooseDate(View view){
         Intent intent = new Intent(getApplicationContext(), ChooseTimeActivity.class);
         intent.putExtras(bund);

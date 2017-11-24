@@ -44,10 +44,10 @@ public class CreateAccountActivity extends AppCompatActivity {
 
 
     public Boolean everythingFilled(String fName, String lName, String address, String city,
-                                    String zip, String email, String password, String password2){
+                                    String zip, String email, String password, String password2, String answer){
 
         return !(fName.isEmpty() || lName.isEmpty() || address.isEmpty() || city.isEmpty() || zip.isEmpty()
-                || email.isEmpty() || password.isEmpty() || password2.isEmpty());
+                || email.isEmpty() || password.isEmpty() || password2.isEmpty() || answer.isEmpty());
     }
 
 
@@ -112,12 +112,23 @@ public class CreateAccountActivity extends AppCompatActivity {
         text = (EditText)findViewById(R.id.password_confirm);
         String passwordConfirm = text.getText().toString();
 
+        //Get security question from UI and add to map
+        Spinner sq = (Spinner) findViewById(R.id.security_question);
+        String ques = sq.getSelectedItem().toString();
+        userInfo.put("security_question",ques);
+
+        //Get answer to security question and add to map
+        text = (EditText)findViewById(R.id.security_answer);
+        String answer = text.getText().toString();
+        userInfo.put("security_answer",answer);
+
+
         user.setInformation(userInfo);
 
 
 
 
-        if (everythingFilled(firstName,lastName,address,city,zip,email,password,passwordConfirm)) {
+        if (everythingFilled(firstName,lastName,address,city,zip,email,password,passwordConfirm,answer)) {
             if (comparePass(password, passwordConfirm)) {
 
                 Intent intent = new Intent(getApplicationContext(), ServiceActivity.class);

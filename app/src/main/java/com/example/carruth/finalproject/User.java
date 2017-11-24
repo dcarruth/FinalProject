@@ -20,7 +20,9 @@ import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
-
+/**
+ * Stores user information for appointment setting. Uses a map as main storage structure.
+ */
 public class User {
 
 
@@ -56,11 +58,21 @@ public class User {
         return information.get(requested);
     }
 
+    /**
+     * Updates specific element of user map
+     * @param key item being updated
+     * @param info item replacing what is being updated
+     */
     public void updateInformation(String key, String info){
         information.put(key,info);
     }
 
 
+    /**
+     * Parses the email from the user to make it a string that FireBase can use as a key
+     * @param email email from the user's information
+     * @return parsed email that contains no '@' or '.'
+     */
     public String parseEmailToKey(String email){
 
         // String to store final email to be used as key in data base
@@ -86,6 +98,21 @@ public class User {
         return finalKey;
     }
 
+
+    /**
+     * Used when users forget their password to update their password that is emailed to them
+     * @param email email from the user
+     * @param newPassword the password used to replace the current password
+     */
+    public void changePassword(String email, String newPassword){
+
+    }
+
+    /**
+     * This method pulls JSON strings from the data base to restore user data
+     * @param email The email that is used to store each user
+     * @return JSON string of the User's object
+     */
     public String getUserDataFromDataBase(String email){
 
         FirebaseDatabase Ref = FirebaseDatabase.getInstance();
@@ -111,6 +138,10 @@ public class User {
         return json;
     }
 
+    /**
+     * This method saves User information to the data base as JSON
+     * @param save JSON  string of the User Object
+     */
     public void saveUserToDataBase(String save){
 
         //Save to database
