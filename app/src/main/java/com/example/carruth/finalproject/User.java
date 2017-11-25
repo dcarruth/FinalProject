@@ -54,8 +54,13 @@ public class User {
         information = mMap;
     }
 
-    public String getInformation(String requested){
-        return information.get(requested);
+    public String getInformation(String requested) {
+
+        if (information.containsKey(requested)) {
+            return information.get(requested);
+        } else {
+            return null;
+        }
     }
 
     /**

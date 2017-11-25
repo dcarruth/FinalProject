@@ -8,7 +8,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.io.LineNumberReader;
 
@@ -49,7 +53,40 @@ public class ChooseTimeActivity extends AppCompatActivity {
     }
 
     public void onSelectTime(View view){
-        Intent intent = new Intent(getApplicationContext(),ConfirmActivity.class);
-        startActivity(intent);
+
+        Bundle bund = getIntent().getExtras();
+        Gson gson = new Gson();
+        User user = gson.fromJson(bund.getString("user"),User.class);
+
+        RadioButton radioButton1 = (RadioButton)findViewById(R.id.radioButton);
+        RadioButton radioButton2 = (RadioButton)findViewById(R.id.radioButton2);
+        RadioButton radioButton3 = (RadioButton)findViewById(R.id.radioButton3);
+
+        if (radioButton1.isChecked()){
+            user.updateInformation("time",radioButton1.getText().toString());
+            bund.putString("user",gson.toJson(user));
+            Intent intent = new Intent(getApplicationContext(),ConfirmActivity.class);
+            intent.putExtras(bund);
+            startActivity(intent);
+        }
+
+        else if (radioButton2.isChecked()){
+            user.updateInformation("time",radioButton2.getText().toString());
+            bund.putString("user",gson.toJson(user));
+            Intent intent = new Intent(getApplicationContext(),ConfirmActivity.class);
+            intent.putExtras(bund);
+            startActivity(intent);
+        }
+
+        else if (radioButton3.isChecked()){
+            user.updateInformation("time",radioButton3.getText().toString());
+            bund.putString("user",gson.toJson(user));
+            Intent intent = new Intent(getApplicationContext(),ConfirmActivity.class);
+            intent.putExtras(bund);
+            startActivity(intent);
+        }
+        else {
+            Toast.makeText(getApplicationContext(),"Please select a time!",Toast.LENGTH_SHORT).show();
+        }
     }
 }

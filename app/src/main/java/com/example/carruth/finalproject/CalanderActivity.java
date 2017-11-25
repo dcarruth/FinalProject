@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CalendarView;
 
+import com.google.gson.Gson;
+
 public class CalanderActivity extends AppCompatActivity {
 
     private  static final String TAG = "CalendarActivity";
@@ -29,9 +31,11 @@ public class CalanderActivity extends AppCompatActivity {
             public void onSelectedDayChange(CalendarView CalendarView, int year, int month, int dayOfMonth) {
                 String date = month + "/" + dayOfMonth + "/"+ year ;
                 Log.d(TAG, "onSelectedDayChange: mm/dd/yyyy:" + date);
-                Intent intent = new Intent(CalanderActivity.this,ChooseTimeActivity.class);
-                bundle = new Bundle();
+                Gson gson = new Gson();
+                User user = gson.fromJson(getIntent().getExtras().toString(),User.class);
+                user.updateInformation("date",date);
                 bundle.putString("date",date);
+                bundle.putString("user",gson.toJson(user));
                 bund = bundle;
             }
 
