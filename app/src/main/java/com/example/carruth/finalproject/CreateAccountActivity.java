@@ -29,6 +29,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,33 +132,38 @@ public class CreateAccountActivity extends AppCompatActivity {
         if (everythingFilled(firstName,lastName,address,city,zip,email,password,passwordConfirm,answer)) {
             if (comparePass(password, passwordConfirm)) {
 
-                Intent intent = new Intent(getApplicationContext(), ServiceActivity.class);
+                final Gson gson = new Gson();
+                final String userI = gson.toJson(user);
+                user.saveUserToDataBase(userI);
 
                 // Creates login in firebase that can be accessed anytime
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Log.d("", "createUserWithEmail:onComplete:" + task.isSuccessful());
-                                Log.i("Create User","Successfully created new authentication.");
+
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(getApplicationContext(),"Invalid Email and Password!",
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),"Invalid email or password"
+                                            , Toast.LENGTH_SHORT).show();
                                 }
+                                else {
+                                    Log.d("", "createUserWithEmail:onComplete:" + task.isSuccessful());
+                                    Log.i("Create User","Successfully created new authentication.");
+                                    //Save object to json string to add it to the intent. Reconstruct in new activity
+                                    Intent intent = new Intent(getApplicationContext(), ServiceActivity.class);
+                                    intent.putExtra("user", userI);
+                                    startActivity(intent);
+                                }
+
                                 // ...
                             }
                         });
 
 
-                //Save object to json string to add it to the intent. Reconstruct in new activity
-                Gson gson = new Gson();
-                String userI = gson.toJson(user);
-                user.saveUserToDataBase(userI);
-                intent.putExtra("user", userI);
-                startActivity(intent);
+
             } else {
                 Toast t = Toast.makeText(getApplicationContext(), "Please make sure your passwords match!", Toast.LENGTH_LONG);
                 t.show();

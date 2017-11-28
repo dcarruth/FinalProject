@@ -47,14 +47,10 @@ public class ServiceActivity extends AppCompatActivity {
         }
     }
 
-    public void onContinue(View view) {
-        Bundle bundle;
-        bundle = getIntent().getExtras();
-        String json = bundle.getString("user");
-        Gson gson = new Gson();
-        User user = gson.fromJson(json, User.class);
+    public void onContinue(View view){
+        String user = getIntent().getStringExtra("user");
         double total = 0.0;
-
+        String activities = null;
         // Check the check boxes
 
         CheckBox check1 = (CheckBox) findViewById(R.id.service1);
@@ -66,35 +62,43 @@ public class ServiceActivity extends AppCompatActivity {
 
         if (check1.isChecked()) {
             total += 22.99;
-            user.updateInformation("service1",check1.getText().toString());
+            new User().updateDataBase(user,"service1",check1.getText().toString());
+            activities += check1.getText().toString();
         }
         if (check2.isChecked()) {
             total += 49.99;
-            user.updateInformation("service2",check2.getText().toString());
+            new User().updateDataBase(user,"service2",check2.getText().toString());
+            activities += check2.getText().toString();
         }
         if (check3.isChecked()) {
             total += 69.99;
-            user.updateInformation("service3",check3.getText().toString());
+            new User().updateDataBase(user,"service3",check3.getText().toString());
+            activities += check3.getText().toString();
         }
         if (check4.isChecked()) {
             total += 69.99;
-            user.updateInformation("service4",check4.getText().toString());
+            new User().updateDataBase(user,"service4",check4.getText().toString());
+            activities += check4.getText().toString();
         }
         if (check5.isChecked()) {
             total += 79.99;
-            user.updateInformation("service5",check5.getText().toString());
+            new User().updateDataBase(user,"service5",check5.getText().toString());
+            activities += check5.getText().toString();
         }
         if (check6.isChecked()) {
             total += 99.99;
-            user.updateInformation("service6",check6.getText().toString());
+            new User().updateDataBase(user,"service6",check6.getText().toString());
+            activities += check6.getText().toString();
         }
 
         if (total == 0.0) {
             Toast.makeText(getApplicationContext(),"Please select a service!", Toast.LENGTH_SHORT).show();
         } else {
-            user.updateInformation("cost", Double.toString(total));
-            bundle.putString("user", gson.toJson(user));
+            new User().updateDataBase(user,"cost",Double.toString(total));
             Intent intent = new Intent(getApplicationContext(), CalanderActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("user",user);
+            bundle.putString("service",activities);
             intent.putExtras(bundle);
             startActivity(intent);
         }

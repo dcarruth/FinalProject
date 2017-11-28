@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
 
 public class CreateNewPasswordActivity extends AppCompatActivity implements CreateNewPasswordFragment.OnFragmentInteractionListener{
 
@@ -34,25 +35,34 @@ public class CreateNewPasswordActivity extends AppCompatActivity implements Crea
 
     public void createRandomPassword(View view) {
 
-        FragmentManager fragMan = getSupportFragmentManager();
-        FragmentTransaction fragTran = fragMan.beginTransaction();
-        CreateNewPasswordFragment newPass = new CreateNewPasswordFragment();
-        fragTran.add(R.id.fragment,newPass);
-        fragTran.commit();
 
-        Button button = (Button)findViewById(R.id.button);
-        button.setVisibility(View.INVISIBLE);
+        EditText editText = (EditText)findViewById(R.id.email_forgot);
 
+            FragmentManager fragMan = getSupportFragmentManager();
+            FragmentTransaction fragTran = fragMan.beginTransaction();
+            CreateNewPasswordFragment newPass = new CreateNewPasswordFragment();
+            fragTran.add(R.id.fragment,newPass);
+            fragTran.commit();
+            Button button = (Button)findViewById(R.id.button);
+            button.setVisibility(View.INVISIBLE);
 
-        if (true) {
+    }
 
+    public void onResetPass(View view) {
+        EditText editText = (EditText) findViewById(R.id.security_question);
+        EditText editText1 = (EditText) findViewById(R.id.security_answer);
+        EditText editText2 = (EditText) findViewById(R.id.email_forgot);
+        if (editText.getText().toString().isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Please enter your address", Toast.LENGTH_SHORT).show();
+        } else if (editText1.getText().toString().isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Please enter your phone number", Toast.LENGTH_SHORT).show();
         } else {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            new User().updatePassword(editText2.getText().toString(), editText.getText().toString(), editText1.getText().toString());
+            Toast.makeText(getApplicationContext(), "If your address and phone number match, your password will be reset to \"1234\"", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
         }
     }
-
-
     public Boolean validEmail(String email){
         return false;
     }

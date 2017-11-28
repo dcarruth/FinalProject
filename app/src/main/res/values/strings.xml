@@ -166,4 +166,5 @@
     <string name="edit_account">Edit Account</string>
     <string name="edit_appointment">Edit Appointment</string>
     <string name="logout">Logout</string>
+    <string name="please_enter_your_address_and_phone_number">Please Enter Your Address and Phone Number</string>
 </resources>

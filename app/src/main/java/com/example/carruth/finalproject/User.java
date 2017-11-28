@@ -6,17 +6,20 @@ package com.example.carruth.finalproject;
 
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 
 import java.util.HashMap;
 
 import java.util.Map;
+import java.util.Objects;
 
 import static android.content.ContentValues.TAG;
 
@@ -28,18 +31,16 @@ public class User {
 
     private Map<String,String> information;
     private int appointmentsSet;
-    private String json;
+    private String json = null;
 
     User(Map<String,String> m){
         information = m;
         appointmentsSet = 0;
-        json = "";
     }
 
     User(){
         information = new HashMap<>();
         appointmentsSet = 0;
-        json = "";
     }
 
     public void setAppointmentsSet(int i){
@@ -118,7 +119,49 @@ public class User {
      * @param email The email that is used to store each user
      * @return JSON string of the User's object
      */
-    public String getUserDataFromDataBase(String email){
+    public void updateDataBase(final String email, final String info, final String save){
+
+        FirebaseDatabase Ref = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = Ref.getReference(parseEmailToKey(email));
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d("Data from Data base", "Value is: " + value);
+
+                Gson gson = new Gson();
+                User user = gson.fromJson(value,User.class);
+                user.updateInformation(info,save);
+                user.saveUserToDataBase(gson.toJson(user));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+                Log.w("Failed Read", "Failed to read value.", error.toException());
+            }
+        });
+
+    }
+
+    /**
+     * This method saves User information to the data base as JSON
+     * @param save JSON  string of the User Object
+     */
+    public void saveUserToDataBase(String save){
+
+        //Save to database
+        FirebaseDatabase data = FirebaseDatabase.getInstance();
+        // Parse email into firebase approved string
+        DatabaseReference ref = data.getReference(parseEmailToKey(information.get("email")));
+        ref.setValue(save);
+        Log.i("Saving Data","Successfully saved data to data base");
+    }
+
+    public void updatePassword(final String email, final String address, final String phone){
 
         FirebaseDatabase Ref = FirebaseDatabase.getInstance();
         DatabaseReference myRef = Ref.getReference(parseEmailToKey(email));
@@ -130,32 +173,27 @@ public class User {
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
                 Log.d("Data from Data base", "Value is: " + value);
-                json = value;
+                Gson gson = new Gson();
+                User user = gson.fromJson(value,User.class);
+                String savedAddress = user.getInformation("address");
+                String savedPhone = user.getInformation("phone");
+                if (!Objects.equals(address, savedAddress) || !Objects.equals(phone,savedPhone)){
+
+                } else {
+                    user.updateInformation("password","1234");
+                    user.saveUserToDataBase(gson.toJson(user));
+                }
+
+
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
+
                 Log.w("Failed Read", "Failed to read value.", error.toException());
             }
         });
 
-        return json;
     }
-
-    /**
-     * This method saves User information to the data base as JSON
-     * @param save JSON  string of the User Object
-     */
-    public void saveUserToDataBase(String save){
-
-        //Save to database
-        FirebaseDatabase data = FirebaseDatabase.getInstance();
-
-        // Parse email into firebase approved string
-        DatabaseReference ref = data.getReference(parseEmailToKey(information.get("email")));
-        ref.setValue(save);
-        Log.i("Saving Data","Successfully saved data to data base");
-    }
-
 }

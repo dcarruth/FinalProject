@@ -90,11 +90,9 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             Log.d("", "signInWithEmail:onComplete:" + task.isSuccessful());
                             if (task.isSuccessful()){
-                                Bundle bundle = new Bundle();
-                                bundle.putString("user", new User().getUserDataFromDataBase(email));
                                 Log.i("Login","Successful Login");
                                 Intent intent = new Intent(getApplicationContext(), ServiceActivity.class);
-                                intent.putExtras(bundle);
+                                intent.putExtra("user",email);
                                 startActivity(intent);
                             }
                             // If sign in fails, display a message to the user. If sign in succeeds
