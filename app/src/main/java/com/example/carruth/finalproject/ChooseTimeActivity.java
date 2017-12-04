@@ -27,7 +27,7 @@ public class ChooseTimeActivity extends AppCompatActivity {
         String TAG = "Date";
         TextView textView = (TextView) findViewById(R.id.timeDate);
         textView.setText(dated);
-        Log.d(TAG, "1234");
+
     }
     //Create menu
     public boolean onCreateOptionsMenu(Menu menu){
@@ -55,32 +55,31 @@ public class ChooseTimeActivity extends AppCompatActivity {
     public void onSelectTime(View view){
 
         Bundle bund = getIntent().getExtras();
-        Gson gson = new Gson();
-        User user = gson.fromJson(bund.getString("user"),User.class);
+        String user = bund.getString("user");
 
         RadioButton radioButton1 = (RadioButton)findViewById(R.id.radioButton);
         RadioButton radioButton2 = (RadioButton)findViewById(R.id.radioButton2);
         RadioButton radioButton3 = (RadioButton)findViewById(R.id.radioButton3);
 
         if (radioButton1.isChecked()){
-            user.updateInformation("time",radioButton1.getText().toString());
-            bund.putString("user",gson.toJson(user));
+            new User().updateDataBase(user,"time",radioButton1.getText().toString());
+            bund.putString("time",radioButton1.getText().toString());
             Intent intent = new Intent(getApplicationContext(),ConfirmActivity.class);
             intent.putExtras(bund);
             startActivity(intent);
         }
 
         else if (radioButton2.isChecked()){
-            user.updateInformation("time",radioButton2.getText().toString());
-            bund.putString("user",gson.toJson(user));
+            new User().updateDataBase(user,"time",radioButton2.getText().toString());
+            bund.putString("time",radioButton2.getText().toString());
             Intent intent = new Intent(getApplicationContext(),ConfirmActivity.class);
             intent.putExtras(bund);
             startActivity(intent);
         }
 
         else if (radioButton3.isChecked()){
-            user.updateInformation("time",radioButton3.getText().toString());
-            bund.putString("user",gson.toJson(user));
+            new User().updateDataBase(user,"time",radioButton3.getText().toString());
+            bund.putString("time",radioButton3.getText().toString());
             Intent intent = new Intent(getApplicationContext(),ConfirmActivity.class);
             intent.putExtras(bund);
             startActivity(intent);

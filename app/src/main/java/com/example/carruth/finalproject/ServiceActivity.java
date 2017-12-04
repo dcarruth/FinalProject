@@ -50,7 +50,7 @@ public class ServiceActivity extends AppCompatActivity {
     public void onContinue(View view){
         String user = getIntent().getStringExtra("user");
         double total = 0.0;
-        String activities = null;
+        String activities = "";
         // Check the check boxes
 
         CheckBox check1 = (CheckBox) findViewById(R.id.service1);
@@ -64,31 +64,37 @@ public class ServiceActivity extends AppCompatActivity {
             total += 22.99;
             new User().updateDataBase(user,"service1",check1.getText().toString());
             activities += check1.getText().toString();
+            activities += "\n";
         }
         if (check2.isChecked()) {
             total += 49.99;
             new User().updateDataBase(user,"service2",check2.getText().toString());
             activities += check2.getText().toString();
+            activities += "\n";
         }
         if (check3.isChecked()) {
             total += 69.99;
             new User().updateDataBase(user,"service3",check3.getText().toString());
             activities += check3.getText().toString();
+            activities += "\n";
         }
         if (check4.isChecked()) {
             total += 69.99;
             new User().updateDataBase(user,"service4",check4.getText().toString());
             activities += check4.getText().toString();
+            activities += "\n";
         }
         if (check5.isChecked()) {
             total += 79.99;
             new User().updateDataBase(user,"service5",check5.getText().toString());
             activities += check5.getText().toString();
+            activities += "\n";
         }
         if (check6.isChecked()) {
             total += 99.99;
             new User().updateDataBase(user,"service6",check6.getText().toString());
             activities += check6.getText().toString();
+            activities += "\n";
         }
 
         if (total == 0.0) {
@@ -97,6 +103,7 @@ public class ServiceActivity extends AppCompatActivity {
             new User().updateDataBase(user,"cost",Double.toString(total));
             Intent intent = new Intent(getApplicationContext(), CalanderActivity.class);
             Bundle bundle = new Bundle();
+            bundle.putString("cost",Double.toString(total));
             bundle.putString("user",user);
             bundle.putString("service",activities);
             intent.putExtras(bundle);

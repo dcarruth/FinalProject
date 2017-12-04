@@ -106,15 +106,6 @@ public class User {
 
 
     /**
-     * Used when users forget their password to update their password that is emailed to them
-     * @param email email from the user
-     * @param newPassword the password used to replace the current password
-     */
-    public void changePassword(String email, String newPassword){
-
-    }
-
-    /**
      * This method pulls JSON strings from the data base to restore user data
      * @param email The email that is used to store each user
      * @return JSON string of the User's object
@@ -132,11 +123,12 @@ public class User {
                 Log.d("Data from Data base", "Value is: " + value);
 
                 Gson gson = new Gson();
-                User user = gson.fromJson(value,User.class);
-                user.updateInformation(info,save);
-                user.saveUserToDataBase(gson.toJson(user));
+                User user = gson.fromJson(value, User.class);
+                if (user != null) {
+                    user.updateInformation(info, save);
+                    user.saveUserToDataBase(gson.toJson(user));
+                }
             }
-
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value

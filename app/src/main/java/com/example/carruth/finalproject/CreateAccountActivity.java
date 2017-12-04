@@ -175,4 +175,8 @@ public class CreateAccountActivity extends AppCompatActivity {
         }
     }
 
+    public void onStop(){
+        super.onStop();
+        mAuth = null;
+    }
 }

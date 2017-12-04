@@ -22,20 +22,21 @@ public class CalanderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_calander);
+
         mCalendarView = (CalendarView) findViewById(R.id.calendarView);
+
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
             public Bundle bundle;
             @Override
             public void onSelectedDayChange(CalendarView CalendarView, int year, int month, int dayOfMonth) {
+
                 String date = month + "/" + dayOfMonth + "/"+ year ;
                 Log.d(TAG, "onSelectedDayChange: mm/dd/yyyy:" + date);
-                Gson gson = new Gson();
-                User user = gson.fromJson(getIntent().getExtras().toString(),User.class);
-                user.updateInformation("date",date);
+                bundle = getIntent().getExtras();
                 bundle.putString("date",date);
-                bundle.putString("user",gson.toJson(user));
                 bund = bundle;
             }
 
@@ -66,6 +67,7 @@ public class CalanderActivity extends AppCompatActivity {
     }
 
     public void onChooseDate(View view){
+        new User().updateDataBase(getIntent().getExtras().getString("user"),"date",bund.getString("date"));
         Intent intent = new Intent(getApplicationContext(), ChooseTimeActivity.class);
         intent.putExtras(bund);
         startActivity(intent);
