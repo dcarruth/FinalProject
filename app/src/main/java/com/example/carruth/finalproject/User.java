@@ -113,8 +113,8 @@ public class User {
     public void updateDataBase(final String email, final String info, final String save){
 
         FirebaseDatabase Ref = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = Ref.getReference(parseEmailToKey(email));
-        myRef.addValueEventListener(new ValueEventListener() {
+        final DatabaseReference myRef = Ref.getReference(parseEmailToKey(email));
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again

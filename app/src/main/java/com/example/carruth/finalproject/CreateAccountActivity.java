@@ -64,7 +64,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         //Get email to save to Shared Preferences
         EditText text = (EditText)findViewById(R.id.email_create_account);
-        String email = text.getText().toString();
+        final String email = text.getText().toString();
         userInfo.put("email",email);
         edit.putString("email",email);
         edit.apply();
@@ -135,7 +135,6 @@ public class CreateAccountActivity extends AppCompatActivity {
                 final Gson gson = new Gson();
                 final String userI = gson.toJson(user);
                 user.saveUserToDataBase(userI);
-
                 // Creates login in firebase that can be accessed anytime
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
@@ -154,7 +153,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                                     Log.i("Create User","Successfully created new authentication.");
                                     //Save object to json string to add it to the intent. Reconstruct in new activity
                                     Intent intent = new Intent(getApplicationContext(), ServiceActivity.class);
-                                    intent.putExtra("user", userI);
+                                    intent.putExtra("user", email);
                                     startActivity(intent);
                                 }
 
