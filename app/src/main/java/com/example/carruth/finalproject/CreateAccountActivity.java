@@ -69,6 +69,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         edit.putString("email",email);
         edit.apply();
 
+
         //Get first name from UI and add to map
         text = (EditText)findViewById(R.id.first_name);
         String firstName = text.getText().toString();

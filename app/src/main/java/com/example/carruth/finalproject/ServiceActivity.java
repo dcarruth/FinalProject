@@ -34,13 +34,19 @@ public class ServiceActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.edit_acc:
-                startActivity(new Intent(this, EditAccountActivity.class));
+                Intent intent = new Intent(getApplicationContext(),EditAccountActivity.class);
+                intent.putExtra("user",getIntent().getStringExtra("user"));
+                startActivity(intent);
                 return true;
             case R.id.edit_app:
-                startActivity(new Intent(this, EditAppointmentActivity.class));
+                Intent intent2 = new Intent(getApplicationContext(),EditAppointmentActivity.class);
+                intent2.putExtra("user",getIntent().getStringExtra("user"));
+                startActivity(intent2);
                 return true;
             case R.id.logout:
-                startActivity(new Intent(this, MainActivity.class));
+                Intent intent3 = new Intent(getApplicationContext(),MainActivity.class);
+                intent3.putExtra("user",getIntent().getStringExtra("user"));
+                startActivity(intent3);
             default:
                 return super.onOptionsItemSelected(item);
 
