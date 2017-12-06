@@ -32,8 +32,8 @@ public class ConfirmActivity extends AppCompatActivity {
         jobs.setText(bund.getString("service"));
 
         TextView cost = (TextView)findViewById(R.id.cost);
-        String cost2 = String.format("%2$.2f",bund.getString("cost"));
-        cost.setText(cost2);
+        cost.setText(bund.getString("cost"));
+
     }
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflate = getMenuInflater();
