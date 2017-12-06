@@ -43,7 +43,19 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Verifies that all fields are filled in the activity
+     * @param fName
+     * @param lName
+     * @param address
+     * @param city
+     * @param zip
+     * @param email
+     * @param password
+     * @param password2
+     * @param answer
+     * @return
+     */
     public Boolean everythingFilled(String fName, String lName, String address, String city,
                                     String zip, String email, String password, String password2, String answer){
 
@@ -55,6 +67,9 @@ public class CreateAccountActivity extends AppCompatActivity {
     /************************************************************
      * Gathers info from the create account screen and save data in
      * a map. Then creates a User object for the rest of the app.
+     * @param view User Interface
+     * @throws Exception //If the parameter and code fails to load,
+     * exception is thrown
      *************************************************************/
     public void validateData(View view) throws Exception {
 
