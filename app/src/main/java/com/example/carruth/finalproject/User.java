@@ -30,24 +30,14 @@ public class User {
 
 
     private Map<String,String> information;
-    private int appointmentsSet;
     private String json = null;
 
     User(Map<String,String> m){
         information = m;
-        appointmentsSet = 0;
     }
 
     User(){
         information = new HashMap<>();
-        appointmentsSet = 0;
-    }
-
-    public void setAppointmentsSet(int i){
-        if (i != 0)
-            appointmentsSet += i;
-        else
-            appointmentsSet = 0;
     }
 
 
@@ -55,6 +45,11 @@ public class User {
         information = mMap;
     }
 
+    /**
+     * Gets specific information from User map
+     * @param requested The piece of info needed
+     * @return The info requested
+     */
     public String getInformation(String requested) {
 
         if (information.containsKey(requested)) {
@@ -153,6 +148,12 @@ public class User {
         Log.i("Saving Data","Successfully saved data to data base");
     }
 
+    /**
+     * Changes the user's password when they forget what their password is
+     * @param email User's email to check for validation
+     * @param address User's address for validation
+     * @param phone User's phone for validation
+     */
     public void updatePassword(final String email, final String address, final String phone){
 
         FirebaseDatabase Ref = FirebaseDatabase.getInstance();
