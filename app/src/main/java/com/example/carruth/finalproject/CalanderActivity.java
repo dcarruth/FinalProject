@@ -44,11 +44,22 @@ public class CalanderActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Creates the Menu necessary for navigation for User account editing and logging out
+     * @param menu UI for menu option
+     * @return returns true
+     */
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflate = getMenuInflater();
         inflate.inflate(R.menu.menu,menu);
         return true;
     }
+    /**
+     * This code dictates the upper-bar menu options that allows for easier navigation and access to
+     * certain normally non-reachable activities, such as editing account information
+     * @param item items that populate the menu
+     * @return the item that was selected by the user
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
@@ -72,6 +83,11 @@ public class CalanderActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Allows the User to select a date that User wants for the employee to come by and perform
+     * a service for them. It also updates this information to the database.
+     * @param view UI view-ability
+     */
     public void onChooseDate(View view){
         new User().updateDataBase(getIntent().getExtras().getString("user"),"date",bund.getString("date"));
         Intent intent = new Intent(getApplicationContext(), ChooseTimeActivity.class);

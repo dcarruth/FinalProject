@@ -13,7 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 /**
- * Created by Daniel Thomsen on 11/20/2017.
+ * Unused code - possible future implementation for the employee side of the app
+ *
  */
 
 public class Employee {
