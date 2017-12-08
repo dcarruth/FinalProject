@@ -30,11 +30,23 @@ public class ChooseTimeActivity extends AppCompatActivity {
 
     }
     //Create menu
+    /**
+     * Creates the Menu necessary for navigation for User account editing and logging out
+     * @param menu UI for menu option
+     * @return returns true
+     */
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflate = getMenuInflater();
         inflate.inflate(R.menu.menu,menu);
         return true;
     }
+
+    /**
+     * This code dictates the upper-bar menu options that allows for easier navigation and access to
+     * certain normally non-reachable activities, such as editing account information
+     * @param item items that populate the menu
+     * @return the item that was selected by the user
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
@@ -62,6 +74,11 @@ public class ChooseTimeActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This allows users to check anytime that the employee is available on a given day.
+     * Values are currently hardcoded for demonstration purposes only
+     * @param view UI view-ability
+     */
     public void onSelectTime(View view){
 
         Bundle bund = getIntent().getExtras();
