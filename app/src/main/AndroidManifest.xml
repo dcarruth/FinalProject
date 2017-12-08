@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.carruth.finalproject">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/dr_vinyl"
@@ -53,9 +57,14 @@
             android:name=".EditAccountActivity"
             android:label="Edit Account"
             android:screenOrientation="portrait" />
-        <activity android:name=".EditAppointmentActivity"
+        <activity
+            android:name=".EditAppointmentActivity"
             android:label="Edit Appointment"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity android:name=".CameraActivity"
+            android:label="Picture"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

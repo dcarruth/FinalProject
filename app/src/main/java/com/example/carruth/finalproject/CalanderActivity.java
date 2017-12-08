@@ -66,6 +66,10 @@ public class CalanderActivity extends AppCompatActivity {
                 Intent intent3 = new Intent(getApplicationContext(),MainActivity.class);
                 intent3.putExtra("user",getIntent().getExtras().getString("user"));
                 startActivity(intent3);
+            case R.id.camera:
+                Intent intent4 = new Intent(getApplicationContext(),CameraActivity.class);
+                intent4.putExtra("user",getIntent().getStringExtra("user"));
+                startActivity(intent4);
             default:
                 return super.onOptionsItemSelected(item);
 
@@ -75,7 +79,6 @@ public class CalanderActivity extends AppCompatActivity {
     public void onChooseDate(View view){
         new User().updateDataBase(getIntent().getExtras().getString("user"),"date",bund.getString("date"));
         Intent intent = new Intent(getApplicationContext(), ChooseTimeActivity.class);
-        bund.putString("user",getIntent().getExtras().getString("user"));
         intent.putExtras(bund);
         startActivity(intent);
     }
