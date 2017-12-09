@@ -123,7 +123,8 @@ public class ServiceActivity extends AppCompatActivity {
         if (total == 0.0) {
             Toast.makeText(getApplicationContext(),"Please select a service!", Toast.LENGTH_SHORT).show();
         } else {
-            addServ += "cost $" + Double.toString(total);
+            double howMuch = Math.round(total * 100.0)/100.0;
+            addServ += "cost $" + Double.toString(howMuch);
             new User().updateDataBase(user,"services",addServ);
             Intent intent = new Intent(getApplicationContext(), CalanderActivity.class);
             Bundle bundle = new Bundle();
