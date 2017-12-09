@@ -106,7 +106,8 @@ public class ServiceActivity extends AppCompatActivity {
         if (total == 0.0) {
             Toast.makeText(getApplicationContext(),"Please select a service!", Toast.LENGTH_SHORT).show();
         } else {
-            new User().updateDataBase(user,"cost",Double.toString(total));
+            double howMuch = Math.round(total * 100.0)/100.0;
+            new User().updateDataBase(user,"cost",Double.toString(howMuch));
             Intent intent = new Intent(getApplicationContext(), CalanderActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("cost",Double.toString(total));

@@ -35,11 +35,22 @@ public class ConfirmActivity extends AppCompatActivity {
         cost.setText(bund.getString("cost"));
 
     }
+    /**
+     * Creates the Menu necessary for navigation for User account editing and logging out
+     * @param menu UI for menu option
+     * @return returns true
+     */
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflate = getMenuInflater();
         inflate.inflate(R.menu.menu,menu);
         return true;
     }
+    /**
+     * This code dictates the upper-bar menu options that allows for easier navigation and access to
+     * certain normally non-reachable activities, such as editing account information
+     * @param item items that populate the menu
+     * @return the item that was selected by the user
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
@@ -62,6 +73,11 @@ public class ConfirmActivity extends AppCompatActivity {
 
         }
     }
+
+    /**
+     * When the User presses the confirm button, the information is then stored
+     * @param view UI view-ability
+     */
     public void onConfirm(View view){
         Toast t = Toast.makeText(getApplicationContext(),"Thank you for your appointment!", Toast.LENGTH_LONG);
         t.show();
