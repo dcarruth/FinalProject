@@ -1,8 +1,14 @@
 package com.example.carruth.finalproject;
 
 
+import android.app.Activity;
+import android.util.Log;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -19,6 +25,15 @@ public class Employee {
 
     private Map<String, String> employeeInfo;
     private List<String> availableTimes;
+    private TimeCallback callerActivity;
+
+    public interface TimeCallback {
+        void call(List<String> arr);
+    }
+
+    public Employee(Activity activity) {
+        callerActivity = (TimeCallback)activity;
+    }
 
     Employee(Map<String, String> em) {
         employeeInfo = em;
@@ -64,8 +79,54 @@ public class Employee {
         Gson gson = new Gson();
 
         FirebaseDatabase data = FirebaseDatabase.getInstance();
-        DatabaseReference ref = data.getReference(employeeInfo.get("username"));
+        DatabaseReference ref = data.getReference("Available Times").child(employeeInfo.get("username"));
         ref.setValue(gson.toJson(this));
+
+    }
+
+    public void getTimesFromFireBase(final String employee){
+        FirebaseDatabase Ref = FirebaseDatabase.getInstance();
+        final String emp = getCorrectEmployee(employee);
+        final DatabaseReference myRef = Ref.getReference("Available Times").child(emp);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = String.valueOf(dataSnapshot.getValue().toString());
+                Log.d("Data from Data base", "Value is: " + value);
+
+                Gson gson = new Gson();
+
+                Employee emp = gson.fromJson(value, Employee.class);
+                    if (emp != null) {
+                    List<String> times = new ArrayList<String>();
+                    times.add(emp.getAvailableTimes().get(0));
+                    times.add(emp.getAvailableTimes().get(1));
+                    times.add(emp.getAvailableTimes().get(2));
+                    callerActivity.call(times);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+                Log.w("Failed Read", "Failed to read value.", error.toException());
+            }
+        });
+    }
+
+    private String getCorrectEmployee(String employee) {
+        switch (employee) {
+            case "0":
+                return "0001";
+            case "1":
+                return "0010";
+            case "2":
+                return "0011";
+            default:
+                return "";
+        }
     }
 
     public void createEmployees(){

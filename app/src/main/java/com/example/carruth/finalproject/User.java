@@ -117,7 +117,7 @@ public class User {
     public void updateDataBase(final String email, final String info, final String save){
 
         FirebaseDatabase Ref = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = Ref.getReference(parseEmailToKey(email));
+        final DatabaseReference myRef = Ref.getReference("Customer").child(parseEmailToKey(email));
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -130,7 +130,11 @@ public class User {
                 User user = gson.fromJson(value, User.class);
                 if (user != null) {
                     user.updateInformation(info, save);
-                    user.saveUserToDataBase(gson.toJson(user));
+                    User user12 = user;
+                    Log.d("info",info);
+                    Log.d("save",save);
+                    Log.d("user",gson.toJson(user12));
+                    user.saveUserToDataBase(gson.toJson(user12));
                 }
             }
             @Override
@@ -149,10 +153,12 @@ public class User {
      */
     public void saveUserToDataBase(String save){
 
+
         //Save to database
         FirebaseDatabase data = FirebaseDatabase.getInstance();
         // Parse email into firebase approved string
-        DatabaseReference ref = data.getReference(parseEmailToKey(information.get("email")));
+        DatabaseReference ref = data.getReference("Customer").child(parseEmailToKey(information.get("email")));
+        Log.d("Here",save);
         ref.setValue(save);
         Log.i("Saving Data","Successfully saved data to data base");
     }

@@ -22,7 +22,6 @@ public class CalanderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_calander);
 
         mCalendarView = (CalendarView) findViewById(R.id.calendarView);
@@ -98,5 +97,6 @@ public class CalanderActivity extends AppCompatActivity {
         intent.putExtras(bund);
         startActivity(intent);
     }
+
 
 }

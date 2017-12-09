@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="radioButton3" type="id" />
+    <item name="radioButton2" type="id" />
+    <item name="radioButton" type="id" />
+</resources>

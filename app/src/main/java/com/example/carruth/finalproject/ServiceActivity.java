@@ -67,6 +67,7 @@ public class ServiceActivity extends AppCompatActivity {
         String user = getIntent().getStringExtra("user");
         double total = 0.0;
         String activities = "";
+        String addServ = "";
         int employee = 0;
         // Check the check boxes
         CheckBox check1 = (CheckBox) findViewById(R.id.service1);
@@ -78,52 +79,52 @@ public class ServiceActivity extends AppCompatActivity {
 
         if (check1.isChecked()) {
             total += 22.99;
-            new User().updateDataBase(user,"service1",check1.getText().toString());
             activities += check1.getText().toString();
+            addServ += check1.getText().toString() + ", ";
             activities += "\n";
-            employee = 1;
+            employee = 0;
         }
         if (check2.isChecked()) {
             total += 49.99;
-            new User().updateDataBase(user,"service2",check2.getText().toString());
             activities += check2.getText().toString();
+            addServ += check2.getText().toString() + ", ";
             activities += "\n";
-            employee = 1;
+            employee = 0;
         }
         if (check3.isChecked()) {
             total += 69.99;
-            new User().updateDataBase(user,"service3",check3.getText().toString());
             activities += check3.getText().toString();
+            addServ += check3.getText().toString() + ", ";
             activities += "\n";
-            employee = 2;
+            employee = 1;
         }
         if (check4.isChecked()) {
             total += 69.99;
-            new User().updateDataBase(user,"service4",check4.getText().toString());
             activities += check4.getText().toString();
+            addServ += check4.getText().toString() + ", ";
             activities += "\n";
-            employee = 2;
+            employee = 1;
         }
         if (check5.isChecked()) {
             total += 79.99;
-            new User().updateDataBase(user,"service5",check5.getText().toString());
             activities += check5.getText().toString();
+            addServ += check5.getText().toString() + ", ";
             activities += "\n";
-            employee = 3;
+            employee = 2;
         }
         if (check6.isChecked()) {
             total += 99.99;
-            new User().updateDataBase(user,"service6",check6.getText().toString());
             activities += check6.getText().toString();
+            addServ += check6.getText().toString() + ", ";
             activities += "\n";
-            employee = 3;
+            employee = 2;
         }
 
         if (total == 0.0) {
             Toast.makeText(getApplicationContext(),"Please select a service!", Toast.LENGTH_SHORT).show();
         } else {
-            double howMuch = Math.round(total * 100.0)/100.0;
-            new User().updateDataBase(user,"cost",Double.toString(howMuch));
+            addServ += "cost $" + Double.toString(total);
+            new User().updateDataBase(user,"services",addServ);
             Intent intent = new Intent(getApplicationContext(), CalanderActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("cost",Double.toString(total));
