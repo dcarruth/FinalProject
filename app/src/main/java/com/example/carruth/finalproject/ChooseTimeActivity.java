@@ -64,6 +64,10 @@ public class ChooseTimeActivity extends AppCompatActivity {
                 Intent intent3 = new Intent(getApplicationContext(),MainActivity.class);
                 intent3.putExtra("user",getIntent().getExtras().getString("user"));
                 startActivity(intent3);
+            case R.id.camera:
+                Intent intent4 = new Intent(getApplicationContext(),CameraActivity.class);
+                intent4.putExtra("user",getIntent().getStringExtra("user"));
+                startActivity(intent4);
             default:
                 return super.onOptionsItemSelected(item);
 

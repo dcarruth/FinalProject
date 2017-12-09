@@ -167,4 +167,8 @@
     <string name="edit_appointment">Edit Appointment</string>
     <string name="logout">Logout</string>
     <string name="please_enter_your_address_and_phone_number">Please Enter Your Address and Phone Number</string>
+    <string name="take_a_picture">Take A Picture</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="save_pic">Save Picture</string>
+    <string name="user_picture">User Picture</string>
 </resources>
