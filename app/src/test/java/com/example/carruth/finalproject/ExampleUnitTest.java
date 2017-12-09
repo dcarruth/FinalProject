@@ -10,18 +10,14 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
-    @Test
-    public void passwordsMatchTest() throws Exception {
-        assertTrue(new CreateAccountActivity().checkPass("Game","Match"));
-    }
 
     @Test
     public void checkIfEmpty()throws Exception{
-        assertTrue(new CreateAccountActivity().everythingFilled("d","d","d","d","","d","d","d"));
+        assertFalse(new CreateAccountActivity().everythingFilled("d","d","d","d","","d","d","d",""));
+        assertTrue(new CreateAccountActivity().everythingFilled("d","d","d","d","d","d","david@asd.com","d","d..ads"));
+        assertFalse(new CreateAccountActivity().everythingFilled("","d","","d","","d","d","d",""));
+        assertTrue(new CreateAccountActivity().everythingFilled("!@#%","123sd","d","d","a","d","d","123","1"));
+        assertFalse(new CreateAccountActivity().everythingFilled("","","","","","","","",""));
     }
 
-    @Test
-    public void checkValidEmail()throws Exception{
-        assertTrue(new CreateNewPasswordActivity().validEmail("d"));
-    }
 }

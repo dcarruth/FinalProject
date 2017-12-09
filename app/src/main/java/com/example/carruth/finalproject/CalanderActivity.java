@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CalendarView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -25,7 +26,8 @@ public class CalanderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calander);
 
         mCalendarView = (CalendarView) findViewById(R.id.calendarView);
-
+        bund = getIntent().getExtras();
+        bund.putString("date","0/00/0000");
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
             public Bundle bundle;
@@ -91,12 +93,16 @@ public class CalanderActivity extends AppCompatActivity {
      * a service for them. It also updates this information to the database.
      * @param view UI view-ability
      */
-    public void onChooseDate(View view){
-        new User().updateDataBase(getIntent().getExtras().getString("user"),"date",bund.getString("date"));
-        Intent intent = new Intent(getApplicationContext(), ChooseTimeActivity.class);
-        intent.putExtras(bund);
-        startActivity(intent);
-    }
+    public void onChooseDate(View view) {
 
+        if (bund.get("date").equals("0/00/0000")) {
+            Toast.makeText(getApplicationContext(), "No date selected!", Toast.LENGTH_SHORT).show();
+        } else {
+            new User().updateDataBase(getIntent().getExtras().getString("user"), "date", bund.getString("date"));
+            Intent intent = new Intent(getApplicationContext(), ChooseTimeActivity.class);
+            intent.putExtras(bund);
+            startActivity(intent);
+        }
+    }
 
 }
