@@ -29,13 +29,22 @@ public class ServiceActivity extends AppCompatActivity {
         new Employee().createEmployees();
 
     }
-
+    /**
+     * Creates the Menu necessary for navigation for User account editing and logging out
+     * @param menu UI for menu option
+     * @return returns true
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflate = getMenuInflater();
         inflate.inflate(R.menu.menu, menu);
         return true;
     }
-
+    /**
+     * This code dictates the upper-bar menu options that allows for easier navigation and access to
+     * certain normally non-reachable activities, such as editing account information
+     * @param item items that populate the menu
+     * @return the item that was selected by the user
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
@@ -63,6 +72,11 @@ public class ServiceActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Grabs the information on the job(s) chosen, adds the estimated cost of the jobs and then
+     * converts the monetary values and jobs into a String to be passed to the next activity
+     * @param view
+     */
     public void onContinue(View view){
         String user = getIntent().getStringExtra("user");
         double total = 0.0;
