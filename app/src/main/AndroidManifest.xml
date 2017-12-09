@@ -61,10 +61,10 @@
             android:name=".EditAppointmentActivity"
             android:label="Edit Appointment"
             android:screenOrientation="portrait" />
-        <activity android:name=".CameraActivity"
+        <activity
+            android:name=".CameraActivity"
             android:label="Picture"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

@@ -3,22 +3,40 @@ package com.example.carruth.finalproject;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.net.Uri;
 import android.provider.MediaStore;
+import android.provider.SyncStateContract;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 import static com.example.carruth.finalproject.LoginActivity.REQUEST_IMAGE_CAPTURE;
 
 public class CameraActivity extends AppCompatActivity {
 
+    private StorageReference mStore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         dispatchTakePictureIntent();
+        mStore = FirebaseStorage.getInstance().getReference(getIntent().getStringExtra("user"));
     }
 
     private void dispatchTakePictureIntent() {
@@ -35,11 +53,20 @@ public class CameraActivity extends AppCompatActivity {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             ImageView mImageView = (ImageView)findViewById(R.id.picture);
             mImageView.setImageBitmap(imageBitmap);
+            ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+            assert imageBitmap != null;
+            imageBitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+            byte [] b=baos.toByteArray();
+            String temp=Base64.encodeToString(b, Base64.DEFAULT);
+            //new User().updateDataBase(getIntent().getStringExtra("user"),"picture",temp);
         }
     }
 
-    public void onSavePicture(View view){
 
+    public void onSavePicture(View view){
         Toast.makeText(getApplicationContext(),"Picture Saved!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(),ServiceActivity.class);
+        intent.putExtra("user",getIntent().getStringExtra("user"));
+        startActivity(intent);
     }
 }

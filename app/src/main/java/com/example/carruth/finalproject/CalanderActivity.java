@@ -34,7 +34,7 @@ public class CalanderActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(CalendarView CalendarView, int year, int month, int dayOfMonth) {
 
-                String date = month + "/" + dayOfMonth + "/"+ year ;
+                String date = (month + 1) + "/" + dayOfMonth + "/"+ year ;
                 Log.d(TAG, "onSelectedDayChange: mm/dd/yyyy:" + date);
                 bundle = getIntent().getExtras();
                 bundle.putString("date",date);
@@ -69,19 +69,16 @@ public class CalanderActivity extends AppCompatActivity {
                 intent.putExtra("user",getIntent().getExtras().getString("user"));
                 startActivity(intent);
                 return true;
-            case R.id.edit_app:
-                Intent intent2 = new Intent(getApplicationContext(),EditAppointmentActivity.class);
-                intent2.putExtra("user",getIntent().getExtras().getString("user"));
-                startActivity(intent2);
-                return true;
             case R.id.logout:
                 Intent intent3 = new Intent(getApplicationContext(),MainActivity.class);
                 intent3.putExtra("user",getIntent().getExtras().getString("user"));
                 startActivity(intent3);
+                return true;
             case R.id.camera:
                 Intent intent4 = new Intent(getApplicationContext(),CameraActivity.class);
                 intent4.putExtra("user",getIntent().getStringExtra("user"));
                 startActivity(intent4);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 
@@ -98,7 +95,6 @@ public class CalanderActivity extends AppCompatActivity {
         if (bund.get("date").equals("0/00/0000")) {
             Toast.makeText(getApplicationContext(), "No date selected!", Toast.LENGTH_SHORT).show();
         } else {
-            new User().updateDataBase(getIntent().getExtras().getString("user"), "date", bund.getString("date"));
             Intent intent = new Intent(getApplicationContext(), ChooseTimeActivity.class);
             intent.putExtras(bund);
             startActivity(intent);

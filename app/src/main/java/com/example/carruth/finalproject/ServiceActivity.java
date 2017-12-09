@@ -25,7 +25,6 @@ public class ServiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service);
-
         new Employee().createEmployees();
 
     }
@@ -53,19 +52,16 @@ public class ServiceActivity extends AppCompatActivity {
                 intent.putExtra("user",getIntent().getStringExtra("user"));
                 startActivity(intent);
                 return true;
-            case R.id.edit_app:
-                Intent intent2 = new Intent(getApplicationContext(),EditAppointmentActivity.class);
-                intent2.putExtra("user",getIntent().getStringExtra("user"));
-                startActivity(intent2);
-                return true;
             case R.id.logout:
                 Intent intent3 = new Intent(getApplicationContext(),MainActivity.class);
                 intent3.putExtra("user",getIntent().getStringExtra("user"));
                 startActivity(intent3);
+                return true;
             case R.id.camera:
                 Intent intent4 = new Intent(getApplicationContext(),CameraActivity.class);
                 intent4.putExtra("user",getIntent().getStringExtra("user"));
                 startActivity(intent4);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 
@@ -139,12 +135,12 @@ public class ServiceActivity extends AppCompatActivity {
         } else {
             double howMuch = Math.round(total * 100.0)/100.0;
             addServ += "cost $" + Double.toString(howMuch);
-            new User().updateDataBase(user,"services",addServ);
             Intent intent = new Intent(getApplicationContext(), CalanderActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putString("cost",Double.toString(total));
+            bundle.putString("cost",Double.toString(howMuch));
             bundle.putString("user",user);
-            bundle.putString("service",activities);
+            bundle.putString("job",activities);
+            bundle.putString("job2",addServ);
             bundle.putString("employee",Integer.toString(employee));
             intent.putExtras(bundle);
             startActivity(intent);

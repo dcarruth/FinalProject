@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ConfirmActivity extends AppCompatActivity {
 
     @Override
@@ -29,7 +32,7 @@ public class ConfirmActivity extends AppCompatActivity {
         time.setText(bund.getString("time"));
 
         TextView jobs = (TextView)findViewById(R.id.repair);
-        jobs.setText(bund.getString("service"));
+        jobs.setText(bund.getString("job"));
 
         TextView cost = (TextView)findViewById(R.id.cost);
         cost.setText(bund.getString("cost"));
@@ -59,19 +62,16 @@ public class ConfirmActivity extends AppCompatActivity {
                 intent.putExtra("user",getIntent().getExtras().getString("user"));
                 startActivity(intent);
                 return true;
-            case R.id.edit_app:
-                Intent intent2 = new Intent(getApplicationContext(),EditAppointmentActivity.class);
-                intent2.putExtra("user",getIntent().getExtras().getString("user"));
-                startActivity(intent2);
-                return true;
             case R.id.logout:
                 Intent intent3 = new Intent(getApplicationContext(),MainActivity.class);
                 intent3.putExtra("user",getIntent().getExtras().getString("user"));
                 startActivity(intent3);
+                return true;
             case R.id.camera:
                 Intent intent4 = new Intent(getApplicationContext(),CameraActivity.class);
                 intent4.putExtra("user",getIntent().getStringExtra("user"));
                 startActivity(intent4);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 
@@ -83,6 +83,21 @@ public class ConfirmActivity extends AppCompatActivity {
      * @param view UI view-ability
      */
     public void onConfirm(View view){
+        Bundle bundle = getIntent().getExtras();
+        String email = bundle.getString("user");
+        String cost = bundle.getString("cost");
+        String date = bundle.getString("date");
+        String job = bundle.getString("job2");
+        String time = bundle.getString("time");
+
+        Map<String,String> map = new HashMap<>();
+        map.put("email",email);
+        map.put("cost",cost);
+        map.put("date",date);
+        map.put("job",job);
+        map.put("time",time);
+
+        new User().jobCheck(email,map);
         Toast t = Toast.makeText(getApplicationContext(),"Thank you for your appointment!", Toast.LENGTH_LONG);
         t.show();
         Intent intent = new Intent(getApplicationContext(),ServiceActivity.class);

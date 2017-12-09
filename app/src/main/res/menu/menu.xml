@@ -6,9 +6,6 @@
             android:id="@+id/edit_acc"
             android:title="@string/edit_account" />
         <item
-            android:id="@+id/edit_app"
-            android:title="@string/edit_appointment" />
-        <item
             android:id="@+id/logout"
             android:title="@string/logout" />
         <item

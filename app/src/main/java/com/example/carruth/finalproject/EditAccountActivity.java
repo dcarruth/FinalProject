@@ -1,13 +1,14 @@
-package com.example.carruth.finalproject;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
+        package com.example.carruth.finalproject;
+
+        import android.content.Intent;
+        import android.support.v7.app.AppCompatActivity;
+        import android.os.Bundle;
+        import android.util.Log;
+        import android.view.View;
+        import android.widget.EditText;
+        import android.widget.Spinner;
+        import android.widget.Toast;
 
 public class EditAccountActivity extends AppCompatActivity {
 
@@ -71,7 +72,7 @@ public class EditAccountActivity extends AppCompatActivity {
             new User().updateDataBase(getIntent().getStringExtra("user"),"zip",zip);
             infoEdit = true;
         }
-       //Get phone from UI and update account
+        //Get phone from UI and update account
         text = (EditText)findViewById(R.id.edit_phone);
         String phone = text.getText().toString();
         if (!phone.equals("")){

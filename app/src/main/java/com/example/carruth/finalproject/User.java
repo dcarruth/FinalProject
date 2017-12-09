@@ -5,8 +5,10 @@ package com.example.carruth.finalproject;
 
 
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
@@ -25,8 +27,10 @@ import com.google.gson.Gson;
 
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -109,6 +113,35 @@ public class User {
     }
 
 
+    public void saveUserToDataBase(String email){
+        final FirebaseDatabase ref = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = ref.getReference("Appointments");
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            List<String> list = new ArrayList<String>();
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    String myObject = data.getKey();
+                    list.add(myObject);
+                }
+                Log.d("Asdasdas", list.get(list.size()-1));
+                int i = Integer.parseInt(list.get(list.size()-1));
+                i++;
+                String child = Integer.toString(i);
+                for(Map.Entry<String, String> map : information.entrySet()){
+                    myRef.child(child).child("information").child(map.getKey()).setValue(map.getValue());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     /**
      * This method pulls JSON strings from the data base to restore user data
      * @param email The email that is used to store each user
@@ -117,24 +150,58 @@ public class User {
     public void updateDataBase(final String email, final String info, final String save){
 
         FirebaseDatabase Ref = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = Ref.getReference("Customer").child(parseEmailToKey(email));
+        final DatabaseReference myRef = Ref.getReference("Appointments");
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("Data from Data base", "Value is: " + value);
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    String myObject = data.getKey();
 
-                Gson gson = new Gson();
-                User user = gson.fromJson(value, User.class);
-                if (user != null) {
-                    user.updateInformation(info, save);
-                    User user12 = user;
-                    Log.d("info",info);
-                    Log.d("save",save);
-                    Log.d("user",gson.toJson(user12));
-                    user.saveUserToDataBase(gson.toJson(user12));
+                    if (data.child("information").child("email").getValue().toString().equals(email)){
+                        myRef.child(myObject).child("information").child(info).setValue(save);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+                Log.w("Failed Read", "Failed to read value.", error.toException());
+            }
+        });
+
+    }
+
+    public void jobCheck(final String email, final Map<String,String> map){
+        FirebaseDatabase Ref = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = Ref.getReference("Appointments");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    String myObject = data.getKey();
+                    Log.d("asdsad",data.child("information").child("email").getValue().toString() + "   " + email);
+                    if (data.child("information").child("email").getValue().toString().equals(email)){
+                        if (data.child("information").child("job").exists()){
+                            map.put("firstName",data.child("information").child("firstName").getValue().toString());
+                            map.put("lastName",data.child("information").child("lastName").getValue().toString());
+                            map.put("address",data.child("information").child("address").getValue().toString());
+                            map.put("city",data.child("information").child("city").getValue().toString());
+                            map.put("state",data.child("information").child("state").getValue().toString());
+                            map.put("zip",data.child("information").child("zip").getValue().toString());
+                            map.put("phone",data.child("information").child("phone").getValue().toString());
+                            information = map;
+                            saveUserToDataBase(email);
+                        } else {
+                            for (Map.Entry<String,String> map1 : map.entrySet()){
+                                updateDataBase(email,map1.getKey(),map1.getValue());
+                            }
+                        }
+                    }
                 }
             }
             @Override
@@ -148,26 +215,10 @@ public class User {
     }
 
     /**
-     * This method saves User information to the data base as JSON
-     * @param save JSON  string of the User Object
-     */
-    public void saveUserToDataBase(String save){
-
-
-        //Save to database
-        FirebaseDatabase data = FirebaseDatabase.getInstance();
-        // Parse email into firebase approved string
-        DatabaseReference ref = data.getReference("Customer").child(parseEmailToKey(information.get("email")));
-        Log.d("Here",save);
-        ref.setValue(save);
-        Log.i("Saving Data","Successfully saved data to data base");
-    }
-
-    /**
      * Changes the user's password when they forget what their password is
      * @param email User's email to check for validation
      * @param address User's address for validation
-     * @param phone User's phone for validation
+     * @param phone User's phone for validat
      */
     public void updatePassword(final String email, final String address, final String phone){
 

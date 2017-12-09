@@ -66,19 +66,16 @@ public class ChooseTimeActivity extends AppCompatActivity implements Employee.Ti
                 intent.putExtra("user",getIntent().getExtras().getString("user"));
                 startActivity(intent);
                 return true;
-            case R.id.edit_app:
-                Intent intent2 = new Intent(getApplicationContext(),EditAppointmentActivity.class);
-                intent2.putExtra("user",getIntent().getExtras().getString("user"));
-                startActivity(intent2);
-                return true;
             case R.id.logout:
                 Intent intent3 = new Intent(getApplicationContext(),MainActivity.class);
                 intent3.putExtra("user",getIntent().getExtras().getString("user"));
                 startActivity(intent3);
+                return true;
             case R.id.camera:
                 Intent intent4 = new Intent(getApplicationContext(),CameraActivity.class);
                 intent4.putExtra("user",getIntent().getStringExtra("user"));
                 startActivity(intent4);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 
