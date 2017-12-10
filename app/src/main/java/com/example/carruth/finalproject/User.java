@@ -112,7 +112,10 @@ public class User {
         return finalKey;
     }
 
-
+    /**
+     * Saves the User's information to the database, such as name, email and appointments
+     * @param email - e-mail user information
+     */
     public void saveUserToDataBase(String email){
         final FirebaseDatabase ref = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = ref.getReference("Appointments");
@@ -174,6 +177,13 @@ public class User {
 
     }
 
+    /**
+     * Inserts the information, such as name, address, etc. and adds it too the database in the
+     * section that contains the email passed in.
+     * @param email - the email passed in to find the correct user information for updating purposes
+     * @param map - Mainly meant to store the information into a single parsable variable that can
+     *            be easily accessed.
+     */
     public void jobCheck(final String email, final Map<String,String> map){
         FirebaseDatabase Ref = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = Ref.getReference("Appointments");
@@ -218,7 +228,7 @@ public class User {
      * Changes the user's password when they forget what their password is
      * @param email User's email to check for validation
      * @param address User's address for validation
-     * @param phone User's phone for validat
+     * @param phone User's phone for validation
      */
     public void updatePassword(final String email, final String address, final String phone){
 
