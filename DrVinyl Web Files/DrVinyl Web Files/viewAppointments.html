@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Dr. Vinyl App</title>
+    <link rel="stylesheet" type="text/css" href="style_main.css">
+    <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        
+        $(document).ready(function () {
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyBJQaj_siBTa7Saa9RQ4eXJ50efEqfL9Bw",
+                authDomain: "finalproject-b122c.firebaseapp.com",
+                databaseURL: "https://finalproject-b122c.firebaseio.com",
+                projectId: "finalproject-b122c",
+                storageBucket: "finalproject-b122c.appspot.com",
+                messagingSenderId: "547196691304"
+            };
+            firebase.initializeApp(config);
+
+            // Get a reference to the database service
+            var database = firebase.database();
+
+            // read data
+            var appointments = firebase.database().ref('Appointments').orderByChild('information/date');
+            appointments.on('child_added', function (snapshot) {
+                // snapshot.val();
+                console.log(snapshot.val());
+                console.log(typeof (snapshot.val()));
+
+                $("#dataDisplay").append(
+                    "<tr><td>"
+                    +"<strong>" + snapshot.val().information.lastName
+                    + ", " + snapshot.val().information.firstName + "</strong><br /></td>"
+                    + "<td>" + snapshot.val().information.address
+                    + "<br />" + snapshot.val().information.city
+                    + ", " + snapshot.val().information.state
+                    + ", " + snapshot.val().information.zip
+                    + "<br /></td><td>" + snapshot.val().information.phone
+                    + "<br /></td><td>" + snapshot.val().information.email
+                    + "<br /></td>"
+                    + "<td>" + snapshot.val().information.date + "</td>"
+                    + "<td>" + snapshot.val().information.time + "</td>"
+                    + "<td>" + snapshot.val().information.job
+                    + "</td></tr>"
+
+                    );
+                
+            });
+
+        });
+
+    </script>
+    <style>
+        .spacer {
+            border: none;
+        }
+        table tr td {
+            border: 1px solid black;
+            padding: 1em;
+        }
+        .displayer {
+            border: 1px solid black;
+            width: 100%;
+        }
+        .lt {
+            font-size: 120%;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <table class="spacer">
+            <tr class="spacer">
+                <td class="spacer"><a><img class="logo" src="Z49ENdr-vinyl-logo.png" /></a></td>
+                <td class="spacer"><h1 style="margin-left:200px;">Dr. Vinyl App - Employee Control</h1></td>
+            </tr>
+        </table>
+        <div class="horizontalBar"></div>
+
+    </header>
+
+    <div id="wrapper">
+        <div id="content">
+
+            <!--Content-->
+                <table class="spacer" style="width: 100%;">
+                    <tr class="spacer">
+                        <td class="spacer">
+                            <a href="newAppointment.html"><h5 style="text-align: left; margin-left: 4em; font-size: 120%">Create a New Appointment</h5></a>
+                        </td>
+                        <td class="spacer">
+                            <h5 class="loginInfo">Hello User!   <a href="loginPage.html">Log Out</a></h5>
+                        </td>
+                    </tr>
+                </table>
+            
+            <h1 style="text-align: center;">Appointments</h1>
+
+            <div id="display" class="divCard">
+                <table id="dataDisplay" class="displayer">
+                    <tr>
+                        <td><strong class="lt">Name</strong></td>
+                        <td><strong class="lt">Address</strong></td>
+                        <td><strong class="lt">Phone</strong></td>
+                        <td><strong class="lt">Email</strong></td>
+                        <td><strong class="lt">Date</strong></td>
+                        <td><strong class="lt">Time</strong></td>
+                        <td><strong class="lt">Job</strong></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div id="footerContent"></div>
+    </footer>
+</body>
+</html>

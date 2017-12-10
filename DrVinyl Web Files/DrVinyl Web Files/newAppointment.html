@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Dr. Vinyl App</title>
+    <link rel="stylesheet" type="text/css" href="style_main.css">
+    <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"> // import Firebase</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> // import JQuery </script>
+    <script>
+
+        //script goes here
+
+    </script>
+    <style>
+
+        .formKey {
+            text-align: right;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <table>
+            <tr>
+                <td><a><img class="logo" src="Z49ENdr-vinyl-logo.png" /></a></td>
+                <td><h1 style="margin-left:200px;">Dr. Vinyl App - Employee Control</h1></td>
+            </tr>
+        </table>
+        <div class="horizontalBar"></div>
+
+    </header>
+
+    <div id="wrapper">
+        <div id="content">
+
+            <!--Content-->
+            <h5 class="loginInfo">Hello User!   <a href="loginPage.html">Log Out</a></h5>
+            <h1 style="text-align: center;">Schedule New Appointment</h1>
+
+            <div class="divCard" style="width: 47%;">
+                <form action="/action_page.php">
+                    <table style="margin-left: 2em;">
+                        <tr><td><h2>Client Information</h2><br /></td></tr> <!-- spacer -->
+                        <tr>
+                            <td class="formKey">First Name:<br /><br /></td>
+                            <td><input type="text" name="firstName"><br /><br /></td>
+                        </tr>
+                        <tr>
+                            <td class="formKey">Last Name:<br /><br /></td>
+                            <td><input type="text" name="lastName"><br /><br /></td>
+                        </tr>
+                        <tr>
+                            <td class="formKey">Street Address:<br /><br /></td>
+                            <td><input type="text" name="address"><br /><br /></td>
+                        </tr>
+                        <tr>
+                            <td class="formKey">City:<br /><br /></td>
+                            <td><input type="text" name="city"><br /><br /></td>
+                        </tr>
+                        <tr>
+                            <td class="formKey">State:<br /><br /></td>
+                            <td><input type="text" name="state" maxlength="2"><br /><br /></td>
+                        </tr>
+                        <tr>
+                            <td class="formKey">Zip:<br /><br /></td>
+                            <td><input type="text" name="zip" maxlength="5"><br /><br /></td>
+                        </tr>
+                        <tr>
+                            <td class="formKey">Phone:<br /><br /></td>
+                            <td><input type="text" name="phone" maxlength="14"><br />e.g.   (xxx) xxx-xxxx<br /></td>
+                        </tr>
+                        <tr>
+                            <td class="formKey">Email Address:<br /><br /></td>
+                            <td><input type="email" name="email"><br /><br /></td>
+                        </tr>
+                        <tr><td><br /><h2>Appointment Information</h2><br /></td></tr> <!-- spacer -->
+                        <tr>
+                            <td class="formKey">Date:<br /><br /></td>
+                            <td><input type="date" name="date"><br /><br /></td>
+                        </tr>
+                        <tr>
+                            <td class="formKey">Time:<br /><br /></td>
+                            <td><input type="time" name="time"><br /><br /></td>
+                        </tr>
+                        <tr>
+                            <td class="formKey">Job:<br /><br /></td>
+                            <td><input type="checkbox" name="job1" value="Leather Repair"> Leather Repair<br />
+                                <input type="checkbox" name="job2" value="Hard Plastic Repair"> Hard Plastic Repair<br />
+                                <input type="checkbox" name="job3" value="Fabric Repair"> Fabric Repair<br />
+                                <input type="checkbox" name="job4" value="Paint(Exterior)"> Paint(Exterior)<br />
+                                <input type="checkbox" name="job5" value="Interior Odor Removal"> Interior Odor Removal<br />
+                                <input type="checkbox" name="job6" value="Interior Repair"> Interior Repair<br />
+                            <br /></td>
+                        </tr>
+
+                        <!-- CHECKLIST ITEMS: LEATHER & PLASITC: Leather Repair, Hard Plastic Repair, Fabric Repair VEHICLE: Paint(Exterior), Interior Odor Removal, Interior Repair -->
+
+                    </table>
+                    <a href="viewAppointments.html"><h5 style="margin-left: 45%; font-size: 120%">SUBMIT</h5></a>
+                </form>
+            </div>
+
+            <br /><br /><br />
+            
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div id="footerContent"></div>
+    </footer>
+</body>
+</html>
