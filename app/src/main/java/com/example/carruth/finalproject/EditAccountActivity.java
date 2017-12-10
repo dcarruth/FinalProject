@@ -20,6 +20,11 @@ public class EditAccountActivity extends AppCompatActivity {
         infoEdit = false;
     }
 
+    /**
+     * This function allows the user ot change any information in their account to keep it accurate
+     * or in line with their needs.
+     * @param view UI view-ability
+     */
     public void onEditAccount(View view){
 
         EditText text = (EditText)findViewById(R.id.edit_email);
