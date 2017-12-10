@@ -116,6 +116,12 @@ public class Employee {
         });
     }
 
+    /**
+     * Numeric value assigned in place of Employee - think as employee number for the sake of the
+     * app
+     * @param employee - the employee information, basically
+     * @return returns the employee number in binary
+     */
     private String getCorrectEmployee(String employee) {
         switch (employee) {
             case "0":
@@ -129,6 +135,10 @@ public class Employee {
         }
     }
 
+    /**
+     * Creates unique employees, mainly for test purposes - gives available times, name, username,
+     * and password
+     */
     public void createEmployees(){
         //Create some employees to use
         Map<String,String> map1 = new HashMap<>();

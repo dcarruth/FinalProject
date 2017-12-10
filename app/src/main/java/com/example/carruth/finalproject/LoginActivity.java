@@ -73,7 +73,11 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.addAuthStateListener(mAuthListener);
     }
 
-
+    /**
+     * Verifies that information given for the login is correct by comparing username and password
+     * with what is stored in firebase
+     * @param view
+     */
     public void validateLogin(View view) {
 
 

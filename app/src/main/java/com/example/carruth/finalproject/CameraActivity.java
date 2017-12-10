@@ -39,6 +39,9 @@ public class CameraActivity extends AppCompatActivity {
         mStore = FirebaseStorage.getInstance().getReference(getIntent().getStringExtra("user"));
     }
 
+    /**
+     * The function that tells the phone to take a picture
+     */
     private void dispatchTakePictureIntent() {
         Toast.makeText(getApplicationContext(),"Please take picture landscape!", Toast.LENGTH_LONG).show();
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -46,6 +49,14 @@ public class CameraActivity extends AppCompatActivity {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
+
+    /**
+     * Requests the code or "bit map" of the image and stores it into a string
+     * @param requestCode  the value of REQUEST_IMAGE_CAPTURE -used to compare/verify
+     * @param resultCode - used to verify that the operation succeeded.
+     * @param data the main data where the image code is added to - connected to current user data
+     *             and job
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -62,7 +73,10 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * Doesn't actually save at the moment, but does say that it does
+     * @param view
+     */
     public void onSavePicture(View view){
         Toast.makeText(getApplicationContext(),"Picture Saved!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(),ServiceActivity.class);
