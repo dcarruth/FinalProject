@@ -35,7 +35,7 @@ public class CreateNewPasswordActivity extends AppCompatActivity implements Crea
 
     /**
      * Presents the fragment password to the user so that they can chane their password
-     * @param view
+     * @param view UI view-ability
      */
     public void createRandomPassword(View view) {
 
@@ -55,7 +55,7 @@ public class CreateNewPasswordActivity extends AppCompatActivity implements Crea
     /**
      * If the address and the phone number match, the user can then edit/reset their password for
      * their account
-     * @param view
+     * @param view UI view-ability
      */
     public void onResetPass(View view) {
         EditText editText = (EditText) findViewById(R.id.security_question);
