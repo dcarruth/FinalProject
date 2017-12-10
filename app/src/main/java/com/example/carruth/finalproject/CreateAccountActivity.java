@@ -45,16 +45,16 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     /**
      * Verifies that all fields are filled in the activity
-     * @param fName
-     * @param lName
-     * @param address
-     * @param city
-     * @param zip
-     * @param email
-     * @param password
-     * @param password2
-     * @param answer
-     * @return
+     * @param fName First name
+     * @param lName Last name
+     * @param address Address
+     * @param city City
+     * @param zip Zip code
+     * @param email Email
+     * @param password Password
+     * @param password2 Confirmed Password
+     * @param answer Security Question Answer
+     * @return True if all fields are not empty, false otherwise
      */
     public Boolean everythingFilled(String fName, String lName, String address, String city,
                                     String zip, String email, String password, String password2, String answer){
@@ -165,7 +165,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                                             , Toast.LENGTH_SHORT).show();
                                 }
                                 else {
-                                    Log.d("", "createUserWithEmail:onComplete:" + task.isSuccessful());
+
                                     Log.i("Create User","Successfully created new authentication.");
                                     //Save object to json string to add it to the intent. Reconstruct in new activity
                                     Intent intent = new Intent(getApplicationContext(), ServiceActivity.class);

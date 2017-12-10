@@ -100,7 +100,7 @@ public class User {
                     String myObject = data.getKey();
                     list.add(myObject);
                 }
-                Log.d("Asdasdas", list.get(list.size()-1));
+
                 int i = Integer.parseInt(list.get(list.size()-1));
                 i++;
                 String child = Integer.toString(i);
@@ -166,7 +166,7 @@ public class User {
                 // whenever data at this location is updated.
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     String myObject = data.getKey();
-                    Log.d("asdsad",data.child("information").child("email").getValue().toString() + "   " + email);
+
                     if (data.child("information").child("email").getValue().toString().equals(email)){
                         if (data.child("information").child("job").exists()){
                             map.put("firstName",data.child("information").child("firstName").getValue().toString());

@@ -94,8 +94,6 @@ public class Employee {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String value = String.valueOf(dataSnapshot.getValue().toString());
-                Log.d("Data from Data base", "Value is: " + value);
-
                 Gson gson = new Gson();
 
                 Employee emp = gson.fromJson(value, Employee.class);
