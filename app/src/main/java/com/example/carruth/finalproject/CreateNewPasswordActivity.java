@@ -61,13 +61,18 @@ public class CreateNewPasswordActivity extends AppCompatActivity implements Crea
         EditText editText = (EditText) findViewById(R.id.security_question);
         EditText editText1 = (EditText) findViewById(R.id.security_answer);
         EditText editText2 = (EditText) findViewById(R.id.email_forgot);
+        EditText editText3 = (EditText) findViewById(R.id.new_password);
+
         if (editText.getText().toString().isEmpty()) {
             Toast.makeText(getApplicationContext(), "Please enter your address", Toast.LENGTH_SHORT).show();
         } else if (editText1.getText().toString().isEmpty()) {
             Toast.makeText(getApplicationContext(), "Please enter your phone number", Toast.LENGTH_SHORT).show();
-        } else {
-            new User().updatePassword(editText2.getText().toString(), editText.getText().toString(), editText1.getText().toString());
-            Toast.makeText(getApplicationContext(), "If your address and phone number match, your password will be reset to \"1234\"", Toast.LENGTH_LONG).show();
+        } else if (editText3.getText().toString().isEmpty()){
+            Toast.makeText(getApplicationContext(), "Please enter your New Password", Toast.LENGTH_SHORT).show();
+        }else {
+            new User().updatePassword(getApplicationContext(),editText2.getText().toString(), editText.getText().toString(), editText1.getText().toString(),
+                    editText3.getText().toString());
+
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
         }

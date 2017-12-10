@@ -69,7 +69,7 @@ public class CameraActivity extends AppCompatActivity {
             imageBitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
             byte [] b=baos.toByteArray();
             String temp=Base64.encodeToString(b, Base64.DEFAULT);
-            //new User().updateDataBase(getIntent().getStringExtra("user"),"picture",temp);
+            new User().updateDataBase(getIntent().getStringExtra("user"),"picture",temp);
         }
     }
 

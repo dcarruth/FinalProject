@@ -16,7 +16,7 @@ public class EditAccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_account);
+        setContentView(R.layout.activity_edit_account2);
         infoEdit = false;
     }
 
@@ -104,7 +104,7 @@ public class EditAccountActivity extends AppCompatActivity {
         }
         if (password.equals(passwordConfirm)){
             if (infoEdit){
-
+                Toast.makeText(getApplicationContext(),"Successfully Updated Information!",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),ServiceActivity.class);
                 intent.putExtra("user",getIntent().getStringExtra("user"));
                 startActivity(intent);

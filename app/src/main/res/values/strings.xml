@@ -171,4 +171,5 @@
     <string name="take_picture">Take Picture</string>
     <string name="save_pic">Save Picture</string>
     <string name="user_picture">User Picture</string>
+    <string name="newPasss">New Password</string>
 </resources>

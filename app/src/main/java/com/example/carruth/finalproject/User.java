@@ -5,6 +5,7 @@ package com.example.carruth.finalproject;
 
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -82,35 +83,6 @@ public class User {
     }
 
 
-    /**
-     * Parses the email from the user to make it a string that FireBase can use as a key
-     * @param email email from the user's information
-     * @return parsed email that contains no '@' or '.'
-     */
-    public String parseEmailToKey(String email){
-
-        // String to store final email to be used as key in data base
-        String finalKey = "";
-
-        // Convert email to char array for parsing
-        char [] middle = email.toCharArray();
-
-        // Parsing and replacing @ and . characters with ( and )
-        for (int i = 0; i < email.length(); i++){
-            if (middle[i] == '@'){
-                middle[i] = '(';
-            }
-            if (middle[i] == '.'){
-                middle[i] = ')';
-            }
-            // Add one char at a time to the final string
-            finalKey = finalKey + middle[i];
-        }
-        if (finalKey.equals("")){
-            Log.d("Failed Parse","Failed to parse Email");
-        }
-        return finalKey;
-    }
 
     /**
      * Saves the User's information to the database, such as name, email and appointments
@@ -230,32 +202,36 @@ public class User {
      * @param address User's address for validation
      * @param phone User's phone for validation
      */
-    public void updatePassword(final String email, final String address, final String phone){
-
+    public void updatePassword(final Context c, final String email, final String address, final String phone, final String newPass){
         FirebaseDatabase Ref = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = Ref.getReference(parseEmailToKey(email));
-
-        myRef.addValueEventListener(new ValueEventListener() {
+        final DatabaseReference myRef = Ref.getReference("Appointments");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("Data from Data base", "Value is: " + value);
-                Gson gson = new Gson();
-                User user = gson.fromJson(value,User.class);
-                String savedAddress = user.getInformation("address");
-                String savedPhone = user.getInformation("phone");
-                if (!Objects.equals(address, savedAddress) || !Objects.equals(phone,savedPhone)){
-
-                } else {
-                    user.updateInformation("password","1234");
-                    user.saveUserToDataBase(gson.toJson(user));
+                Boolean test = true;
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    String myObject = data.getKey();
+                    if (data.child("information").child("email").getValue().toString().equals(email)) {
+                        test = false;
+                        if (data.child("information").child("address").getValue().toString().equals(address)) {
+                            saveUserToDataBase(email);
+                            if (data.child("information").child("phone").getValue().toString().equals(phone)) {
+                                myRef.child(myObject).child("information").child("password").setValue(newPass);
+                                Toast.makeText(c, "Successfully Changed Password!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(c, "Incorrect Phone Number!", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(c,"Incorrect Address!",Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
-
-
+                if (test){
+                    Toast.makeText(c,"Email not found. Please create an account!",Toast.LENGTH_SHORT).show();
+                }
             }
-
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
