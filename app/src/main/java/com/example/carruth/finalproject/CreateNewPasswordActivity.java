@@ -33,6 +33,10 @@ public class CreateNewPasswordActivity extends AppCompatActivity implements Crea
         }
     }
 
+    /**
+     * Presents the fragment password to the user so that they can chane their password
+     * @param view
+     */
     public void createRandomPassword(View view) {
 
 
@@ -48,6 +52,11 @@ public class CreateNewPasswordActivity extends AppCompatActivity implements Crea
 
     }
 
+    /**
+     * If the address and the phone number match, the user can then edit/reset their password for
+     * their account
+     * @param view
+     */
     public void onResetPass(View view) {
         EditText editText = (EditText) findViewById(R.id.security_question);
         EditText editText1 = (EditText) findViewById(R.id.security_answer);
@@ -63,10 +72,12 @@ public class CreateNewPasswordActivity extends AppCompatActivity implements Crea
             startActivity(intent);
         }
     }
+
+    /*
     public Boolean validEmail(String email){
         return false;
     }
-
+*/
     @Override
     public void onFragmentInteraction(Uri uri) {
         //Not sure what this needs to do but without it the app crashes
